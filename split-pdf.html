@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Split PDF – Free Online Tool | Nexora</title>
+  <meta name="description" content="Split a PDF into multiple files or extract specific pages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Split PDF</div>
+    <h1 class="tool-hero-title">✂️ Split PDF</h1>
+    <p class="tool-hero-sub">Split a PDF into multiple files or extract specific pages.</p>
+  </div>
+</section>
+<div class="container" style="padding-top:2rem;padding-bottom:4rem;text-align:center;">
+  <div style="max-width:500px;margin:0 auto;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:3rem 2rem;">
+    <div style="font-size:4rem;margin-bottom:1rem;">✂️</div>
+    <div style="display:inline-block;background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);border-radius:50px;padding:4px 16px;font-size:0.8rem;color:var(--purple);font-weight:700;margin-bottom:1rem;">🚀 COMING SOON</div>
+    <h2 style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;margin-bottom:0.75rem;">Split PDF</h2>
+    <p style="color:var(--text2);margin-bottom:1.5rem;line-height:1.7;">Split a PDF into multiple files or extract specific pages. We are working hard to bring this tool to you very soon!</p>
+    <a href="../index.html#tools" class="btn btn-primary">← Browse Other Tools</a>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+const t=localStorage.getItem('theme')||'dark';
+document.documentElement.setAttribute('data-theme',t);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent=t==='dark'?'☀️':'🌙';
+document.getElementById('themeToggle').addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');const n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeToggle').querySelector('.theme-icon').textContent=n==='dark'?'☀️':'🌙';});
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
+</script>
+</body>
+</html>

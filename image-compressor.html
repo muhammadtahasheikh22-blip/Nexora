@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Compressor – Free Online Image Compression | Nexora</title>
+  <meta name="description" content="Free online image compressor. Compress JPG, PNG, WebP images without losing quality. Drag and drop, bulk upload supported." />
+  <link rel="canonical" href="https://nexora.com/tools/image-compressor" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Image Compressor</div>
+    <h1 class="tool-hero-title">🖼️ Image Compressor</h1>
+    <p class="tool-hero-sub">Compress JPG, PNG and WebP images instantly — drag & drop, no upload to server, 100% private.</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+    <div class="tool-card">
+      <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+        <div class="drop-icon">🖼️</div>
+        <div class="drop-title">Drop images here or click to upload</div>
+        <div class="drop-sub">JPG, PNG, WebP supported • Max 10MB per image</div>
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple style="display:none" onchange="handleFiles(this.files)" />
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <h2>Compression Quality</h2>
+        <span id="qualityVal" style="color:var(--purple);font-weight:700;font-size:1.2rem;">80%</span>
+      </div>
+      <input type="range" id="qualityRange" min="10" max="100" value="80" oninput="updateQuality(this.value)" style="width:100%;" />
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text3);margin-top:0.4rem;">
+        <span>Smaller file</span>
+        <span>Better quality</span>
+      </div>
+    </div>
+
+    <div id="resultsSection" style="display:none;">
+      <div class="tool-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <h2>Results</h2>
+          <button class="btn btn-ghost btn-sm" onclick="clearAll()">🗑 Clear All</button>
+        </div>
+        <div id="resultsList"></div>
+      </div>
+    </div>
+
+    <div class="tool-card faq-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Are my images uploaded to a server?</button>
+          <div class="faq-a">No! All compression happens directly in your browser using the HTML5 Canvas API. Your images never leave your device — 100% private and secure.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What image formats are supported?</button>
+          <div class="faq-a">We support JPG/JPEG, PNG, and WebP formats. GIF and SVG are not supported for compression.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What quality setting should I use?</button>
+          <div class="faq-a">80% quality is recommended for most use cases — it provides a good balance between file size reduction and visual quality. For web images, 60-70% is often sufficient. For print, use 90%+.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-sidebar">
+    <div class="tool-card">
+      <h3>📊 Session Stats</h3>
+      <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span style="color:var(--text2);">Images compressed</span><strong id="s-count">0</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:0.85rem;"><span style="color:var(--text2);">Space saved</span><strong id="s-saved" style="color:var(--green);">0 KB</strong></div>
+      </div>
+    </div>
+    <div class="tool-card">
+      <h3>🔧 More Tools</h3>
+      <div class="sidebar-tool-links">
+        <a href="word-counter.html" class="sidebar-tool-link">📝 Word Counter</a>
+        <a href="qr-generator.html" class="sidebar-tool-link">📱 QR Generator</a>
+        <a href="password-generator.html" class="sidebar-tool-link">🔐 Password Gen</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<style>
+.drop-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:3rem 1.5rem;text-align:center;cursor:pointer;transition:all var(--transition);}
+.drop-zone:hover,.drop-zone.dragover{border-color:var(--purple);background:rgba(108,99,255,0.05);}
+.drop-icon{font-size:3rem;margin-bottom:0.75rem;}
+.drop-title{font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;}
+.drop-sub{font-size:0.85rem;color:var(--text3);}
+.result-item{display:grid;grid-template-columns:60px 1fr auto;gap:1rem;align-items:center;padding:0.75rem;background:var(--bg3);border-radius:var(--radius-sm);margin-bottom:0.75rem;}
+.result-thumb{width:60px;height:60px;object-fit:cover;border-radius:6px;}
+.result-info{}
+.result-name{font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px;}
+.result-sizes{font-size:0.75rem;color:var(--text3);}
+.result-saved{font-size:0.75rem;color:var(--green);font-weight:600;}
+.sidebar-tool-links{display:flex;flex-direction:column;gap:0.4rem;margin-top:0.75rem;}
+.sidebar-tool-link{padding:0.5rem 0.75rem;background:var(--bg3);border-radius:var(--radius-sm);font-size:0.85rem;transition:all var(--transition);color:var(--text2);}
+.sidebar-tool-link:hover{background:rgba(108,99,255,0.1);color:var(--purple);}
+</style>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('theme', n);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+});
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+
+let totalSaved = 0, totalCount = 0;
+
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+
+function updateQuality(v) { document.getElementById('qualityVal').textContent = v + '%'; }
+
+function handleFiles(files) {
+  Array.from(files).forEach(file => {
+    if (!file.type.match(/image\/(jpeg|png|webp)/)) { showToast('Only JPG, PNG, WebP supported!'); return; }
+    if (file.size > 10 * 1024 * 1024) { showToast('File too large! Max 10MB'); return; }
+    compressImage(file);
+  });
+}
+
+function compressImage(file) {
+  const quality = parseInt(document.getElementById('qualityRange').value) / 100;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width; canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+      canvas.toBlob(blob => {
+        const saved = file.size - blob.size;
+        const pct = Math.round((saved / file.size) * 100);
+        totalSaved += Math.max(0, saved);
+        totalCount++;
+        document.getElementById('s-count').textContent = totalCount;
+        document.getElementById('s-saved').textContent = formatSize(totalSaved);
+        showResult(file, blob, pct, img.width, img.height);
+        document.getElementById('resultsSection').style.display = 'block';
+      }, mimeType, quality);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function showResult(original, compressed, pct, w, h) {
+  const url = URL.createObjectURL(compressed);
+  const div = document.createElement('div');
+  div.className = 'result-item';
+  div.innerHTML = `
+    <img src="${url}" class="result-thumb" alt="compressed" />
+    <div class="result-info">
+      <div class="result-name">${original.name}</div>
+      <div class="result-sizes">${formatSize(original.size)} → ${formatSize(compressed.size)} • ${w}×${h}px</div>
+      <div class="result-saved">${pct > 0 ? '✅ Saved ' + pct + '%' : '⚠️ No reduction (try lower quality)'}</div>
+    </div>
+    <a href="${url}" download="${original.name.replace(/\.[^.]+$/, '')}_compressed${original.name.match(/\.[^.]+$/)[0]}" class="btn btn-primary btn-sm">⬇ Download</a>
+  `;
+  document.getElementById('resultsList').prepend(div);
+}
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
+function clearAll() {
+  document.getElementById('resultsList').innerHTML = '';
+  document.getElementById('resultsSection').style.display = 'none';
+  totalSaved = 0; totalCount = 0;
+  document.getElementById('s-count').textContent = '0';
+  document.getElementById('s-saved').textContent = '0 KB';
+}
+
+function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
+</script>
+</body>
+</html>

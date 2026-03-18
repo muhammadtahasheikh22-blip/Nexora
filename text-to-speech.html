@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text to Speech – Free Online TTS Tool | Nexora</title>
+  <meta name="description" content="Free online text to speech converter. Convert any text to audio with multiple voices and languages. No signup needed." />
+  <link rel="canonical" href="https://nexora.com/tools/text-to-speech" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Text to Speech</div>
+    <h1 class="tool-hero-title">🔊 Text to Speech</h1>
+    <p class="tool-hero-sub">Convert any text to natural audio — multiple voices and languages, completely free.</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+    <div class="tool-card">
+      <h2 style="margin-bottom:1rem;">Enter Your Text</h2>
+      <textarea id="ttsText" class="tool-textarea" rows="8" placeholder="Type or paste your text here..."></textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.5rem;">
+        <span id="charCount" style="font-size:0.8rem;color:var(--text3);">0 characters</span>
+        <button class="btn btn-ghost btn-sm" onclick="clearText()">🗑 Clear</button>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <h2 style="margin-bottom:1rem;">Voice Settings</h2>
+      <div class="tts-settings">
+        <div class="tts-field">
+          <label>Voice</label>
+          <select id="voiceSelect" class="tool-input"></select>
+        </div>
+        <div class="tts-field">
+          <label>Speed: <span id="rateVal">1.0</span>x</label>
+          <input type="range" id="rateRange" min="0.5" max="2" step="0.1" value="1" oninput="document.getElementById('rateVal').textContent=parseFloat(this.value).toFixed(1)" />
+        </div>
+        <div class="tts-field">
+          <label>Pitch: <span id="pitchVal">1.0</span></label>
+          <input type="range" id="pitchRange" min="0.5" max="2" step="0.1" value="1" oninput="document.getElementById('pitchVal').textContent=parseFloat(this.value).toFixed(1)" />
+        </div>
+        <div class="tts-field">
+          <label>Volume: <span id="volVal">100</span>%</label>
+          <input type="range" id="volRange" min="0" max="1" step="0.1" value="1" oninput="document.getElementById('volVal').textContent=Math.round(this.value*100)" />
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card" style="text-align:center;">
+      <div class="tts-controls">
+        <button class="btn btn-primary btn-lg" id="speakBtn" onclick="startSpeech()">▶ Speak</button>
+        <button class="btn btn-ghost btn-lg" id="pauseBtn" onclick="pauseSpeech()" disabled>⏸ Pause</button>
+        <button class="btn btn-ghost btn-lg" id="stopBtn" onclick="stopSpeech()" disabled>⏹ Stop</button>
+      </div>
+      <div id="statusMsg" style="margin-top:1rem;font-size:0.9rem;color:var(--text3);">Ready to speak</div>
+      <div class="tts-progress" id="progressBar" style="display:none;">
+        <div class="tts-progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="tool-card faq-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How does this text to speech tool work?</button>
+          <div class="faq-a">This tool uses your browser's built-in Web Speech API to convert text to audio. It works completely in your browser — no data is sent to any server. The available voices depend on your operating system and browser.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Which languages are supported?</button>
+          <div class="faq-a">The available voices and languages depend on your device. Most modern browsers support English, Spanish, French, German, Arabic, Hindi, Urdu, and many more languages through installed system voices.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I download the audio?</button>
+          <div class="faq-a">The Web Speech API plays audio directly in your browser. For downloading audio files, you would need a server-based TTS service. Our Pro plan includes downloadable audio generation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-sidebar">
+    <div class="tool-card">
+      <h3>💡 Tips</h3>
+      <div style="font-size:0.85rem;color:var(--text2);line-height:1.7;margin-top:0.5rem;">
+        <p>• Add commas for natural pauses</p>
+        <p style="margin-top:0.4rem;">• Use periods for longer stops</p>
+        <p style="margin-top:0.4rem;">• Adjust speed for clarity</p>
+        <p style="margin-top:0.4rem;">• Try different voices for best results</p>
+      </div>
+    </div>
+    <div class="tool-card">
+      <h3>🔧 More Tools</h3>
+      <div class="sidebar-tool-links">
+        <a href="word-counter.html" class="sidebar-tool-link">📝 Word Counter</a>
+        <a href="case-converter.html" class="sidebar-tool-link">🔡 Case Converter</a>
+        <a href="password-generator.html" class="sidebar-tool-link">🔐 Password Generator</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<style>
+.tts-settings{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:600px){.tts-settings{grid-template-columns:1fr;}}
+.tts-field{display:flex;flex-direction:column;gap:0.4rem;}
+.tts-field label{font-size:0.85rem;font-weight:600;color:var(--text2);}
+.tts-controls{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.tts-progress{height:6px;background:var(--bg3);border-radius:99px;margin-top:1rem;overflow:hidden;}
+.tts-progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--green));border-radius:99px;width:0%;transition:width 0.3s;}
+.sidebar-tool-links{display:flex;flex-direction:column;gap:0.4rem;margin-top:0.75rem;}
+.sidebar-tool-link{padding:0.5rem 0.75rem;background:var(--bg3);border-radius:var(--radius-sm);font-size:0.85rem;transition:all var(--transition);color:var(--text2);}
+.sidebar-tool-link:hover{background:rgba(108,99,255,0.1);color:var(--purple);}
+</style>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('theme', n);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+});
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+document.getElementById('ttsText').addEventListener('input', function() {
+  document.getElementById('charCount').textContent = this.value.length + ' characters';
+});
+
+let synth = window.speechSynthesis;
+let voices = [];
+let utterance = null;
+
+function loadVoices() {
+  voices = synth.getVoices();
+  const select = document.getElementById('voiceSelect');
+  select.innerHTML = '';
+  voices.forEach((v, i) => {
+    const opt = new Option(`${v.name} (${v.lang})`, i);
+    select.add(opt);
+  });
+  if (!voices.length) {
+    select.innerHTML = '<option>Loading voices...</option>';
+    setTimeout(loadVoices, 500);
+  }
+}
+loadVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+
+function startSpeech() {
+  const text = document.getElementById('ttsText').value.trim();
+  if (!text) { showToast('Please enter some text first!'); return; }
+  synth.cancel();
+  utterance = new SpeechSynthesisUtterance(text);
+  const vi = parseInt(document.getElementById('voiceSelect').value);
+  if (voices[vi]) utterance.voice = voices[vi];
+  utterance.rate = parseFloat(document.getElementById('rateRange').value);
+  utterance.pitch = parseFloat(document.getElementById('pitchRange').value);
+  utterance.volume = parseFloat(document.getElementById('volRange').value);
+  utterance.onstart = () => {
+    document.getElementById('statusMsg').textContent = '🔊 Speaking...';
+    document.getElementById('speakBtn').disabled = true;
+    document.getElementById('pauseBtn').disabled = false;
+    document.getElementById('stopBtn').disabled = false;
+    document.getElementById('progressBar').style.display = 'block';
+    animateProgress();
+  };
+  utterance.onend = () => {
+    document.getElementById('statusMsg').textContent = '✅ Done!';
+    document.getElementById('speakBtn').disabled = false;
+    document.getElementById('pauseBtn').disabled = true;
+    document.getElementById('stopBtn').disabled = true;
+    document.getElementById('progressFill').style.width = '100%';
+    setTimeout(() => { document.getElementById('progressFill').style.width = '0%'; document.getElementById('progressBar').style.display = 'none'; }, 1000);
+  };
+  utterance.onerror = () => { document.getElementById('statusMsg').textContent = '❌ Error — try a different voice'; resetBtns(); };
+  synth.speak(utterance);
+}
+
+function animateProgress() {
+  let w = 0;
+  const interval = setInterval(() => {
+    if (!synth.speaking) { clearInterval(interval); return; }
+    w = Math.min(w + 0.5, 95);
+    document.getElementById('progressFill').style.width = w + '%';
+  }, 100);
+}
+
+function pauseSpeech() {
+  if (synth.paused) { synth.resume(); document.getElementById('pauseBtn').textContent = '⏸ Pause'; document.getElementById('statusMsg').textContent = '🔊 Speaking...'; }
+  else { synth.pause(); document.getElementById('pauseBtn').textContent = '▶ Resume'; document.getElementById('statusMsg').textContent = '⏸ Paused'; }
+}
+
+function stopSpeech() { synth.cancel(); resetBtns(); document.getElementById('statusMsg').textContent = 'Stopped'; }
+function resetBtns() { document.getElementById('speakBtn').disabled = false; document.getElementById('pauseBtn').disabled = true; document.getElementById('stopBtn').disabled = true; }
+function clearText() { document.getElementById('ttsText').value = ''; document.getElementById('charCount').textContent = '0 characters'; synth.cancel(); resetBtns(); }
+function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
+</script>
+</body>
+</html>
