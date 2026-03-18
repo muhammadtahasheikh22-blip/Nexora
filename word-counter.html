@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Counter – Free Online Word Count Tool | Nexora</title>
+  <meta name="description" content="Free online word counter. Count words, characters, sentences, paragraphs and get reading time instantly. No signup needed." />
+  <meta name="keywords" content="word counter, character counter, word count online, reading time calculator" />
+  <meta property="og:title" content="Word Counter – Nexora" />
+  <meta property="og:description" content="Count words, characters and get reading time instantly. Free tool." />
+  <link rel="canonical" href="https://nexora.com/tools/word-counter" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word Counter",
+    "url": "https://nexora.com/tools/word-counter",
+    "description": "Free online word counter tool",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any"
+  }
+  </script>
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">N</span>
+      <span class="logo-text">Nexora</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb">
+      <a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Word Counter
+    </div>
+    <h1 class="tool-hero-title">📝 Word Counter</h1>
+    <p class="tool-hero-sub">Count words, characters, sentences & get your reading time — live, as you type.</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <!-- MAIN TOOL -->
+  <div class="tool-main">
+    <!-- Stats Bar -->
+    <div class="wc-stats">
+      <div class="wc-stat">
+        <div class="wc-stat-val" id="wordCount">0</div>
+        <div class="wc-stat-label">Words</div>
+      </div>
+      <div class="wc-stat">
+        <div class="wc-stat-val" id="charCount">0</div>
+        <div class="wc-stat-label">Characters</div>
+      </div>
+      <div class="wc-stat">
+        <div class="wc-stat-val" id="charNoSpace">0</div>
+        <div class="wc-stat-label">Chars (no space)</div>
+      </div>
+      <div class="wc-stat">
+        <div class="wc-stat-val" id="sentenceCount">0</div>
+        <div class="wc-stat-label">Sentences</div>
+      </div>
+      <div class="wc-stat">
+        <div class="wc-stat-val" id="paraCount">0</div>
+        <div class="wc-stat-label">Paragraphs</div>
+      </div>
+      <div class="wc-stat highlight">
+        <div class="wc-stat-val" id="readTime">0 min</div>
+        <div class="wc-stat-label">Reading Time</div>
+      </div>
+    </div>
+
+    <!-- Text Area -->
+    <div class="tool-box" style="margin-top:1rem">
+      <div class="textarea-toolbar">
+        <span style="font-size:0.85rem;color:var(--text3)">Paste or type your text below</span>
+        <div style="display:flex;gap:0.5rem">
+          <button class="tool-btn" onclick="clearText()">Clear</button>
+          <button class="tool-btn" onclick="copyText()">Copy</button>
+          <button class="tool-btn accent" onclick="sampleText()">Sample Text</button>
+        </div>
+      </div>
+      <textarea
+        id="textInput"
+        placeholder="Start typing or paste your text here... Statistics update live as you type."
+        rows="14"
+        class="text-editor"
+        oninput="analyzeText()"
+      ></textarea>
+    </div>
+
+    <!-- Keyword Density -->
+    <div class="tool-box" style="margin-top:1rem" id="keywordSection" style="display:none">
+      <h3>Top Keywords</h3>
+      <div id="keywordList" class="keyword-list"></div>
+    </div>
+
+    <!-- Reading Level -->
+    <div class="tool-box" style="margin-top:1rem">
+      <h3>Text Analysis</h3>
+      <div class="analysis-grid" id="analysisGrid">
+        <div class="analysis-item">
+          <span class="a-label">Avg. Word Length</span>
+          <span class="a-val" id="avgWordLen">–</span>
+        </div>
+        <div class="analysis-item">
+          <span class="a-label">Unique Words</span>
+          <span class="a-val" id="uniqueWords">–</span>
+        </div>
+        <div class="analysis-item">
+          <span class="a-label">Speak Time</span>
+          <span class="a-val" id="speakTime">–</span>
+        </div>
+        <div class="analysis-item">
+          <span class="a-label">Longest Word</span>
+          <span class="a-val" id="longestWord">–</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="tool-sidebar">
+    <!-- Ad -->
+    <div class="ad-placeholder" style="min-height:250px;border-radius:12px;">
+      <span>Advertisement</span>
+    </div>
+
+    <!-- Related Tools -->
+    <div class="tool-box">
+      <h3>Related Tools</h3>
+      <div class="related-list">
+        <a href="case-converter.html" class="related-item">🔤 Case Converter</a>
+        <a href="text-to-speech.html" class="related-item">🔊 Text to Speech</a>
+        <a href="#" class="related-item">🔍 Grammar Checker</a>
+        <a href="#" class="related-item">📊 SEO Word Counter</a>
+      </div>
+    </div>
+
+    <!-- Tips -->
+    <div class="tool-box">
+      <h3>Quick Tips</h3>
+      <ul class="tips-list">
+        <li>Average reading speed: <strong>200–250 WPM</strong></li>
+        <li>Blog post ideal length: <strong>1,500–2,000</strong> words</li>
+        <li>Tweet limit: <strong>280</strong> characters</li>
+        <li>SEO meta description: under <strong>160</strong> chars</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container ad-slot">
+  <div class="ad-placeholder"><span>Advertisement</span></div>
+</div>
+
+<!-- FAQ Section (Good for SEO) -->
+<section style="padding:3rem 0;background:var(--bg2)">
+  <div class="container" style="max-width:760px">
+    <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1.5rem">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How is reading time calculated?</div>
+        <div class="faq-a">Reading time is calculated based on an average reading speed of 200 words per minute. So a 1,000-word article takes about 5 minutes to read.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does it save my text?</div>
+        <div class="faq-a">No. Your text stays entirely in your browser and is never sent to any server. We respect your privacy completely.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What's the maximum text length?</div>
+        <div class="faq-a">There is no limit! You can paste entire books or documents and the word counter will handle them without any issues.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I use this for SEO content?</div>
+        <div class="faq-a">Yes! Use it to check your article word count, keyword density, and make sure your content meets SEO requirements for length.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit. Free tools for everyone.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="word-counter.html">Word Counter</a>
+      <a href="case-converter.html">Case Converter</a>
+      <a href="image-compressor.html">Image Compressor</a>
+      <a href="bmi-calculator.html">BMI Calculator</a>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="../typing.html">Typing Test</a>
+      <a href="../index.html#pricing">Pricing</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Nexora. All rights reserved.</p></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="../app.js"></script>
+<script>
+// Word Counter Logic
+function analyzeText() {
+  const text = document.getElementById('textInput').value;
+
+  // Word count
+  const words = text.trim() ? text.trim().split(/\s+/).filter(w => w.length > 0) : [];
+  document.getElementById('wordCount').textContent = words.length.toLocaleString();
+
+  // Char count
+  document.getElementById('charCount').textContent = text.length.toLocaleString();
+  document.getElementById('charNoSpace').textContent = text.replace(/\s/g, '').length.toLocaleString();
+
+  // Sentences
+  const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+  document.getElementById('sentenceCount').textContent = sentences.length.toLocaleString();
+
+  // Paragraphs
+  const paras = text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+  document.getElementById('paraCount').textContent = paras.length.toLocaleString();
+
+  // Reading time (200 WPM average)
+  const readingMins = Math.ceil(words.length / 200);
+  document.getElementById('readTime').textContent = readingMins < 1 ? '< 1 min' : readingMins + ' min';
+
+  // Analysis
+  if (words.length > 0) {
+    const avgLen = (words.reduce((sum, w) => sum + w.replace(/[^a-zA-Z]/g,'').length, 0) / words.length).toFixed(1);
+    document.getElementById('avgWordLen').textContent = avgLen + ' chars';
+    const unique = new Set(words.map(w => w.toLowerCase().replace(/[^a-zA-Z]/g,''))).size;
+    document.getElementById('uniqueWords').textContent = unique.toLocaleString();
+    const speakMins = Math.ceil(words.length / 130);
+    document.getElementById('speakTime').textContent = speakMins < 1 ? '< 1 min' : speakMins + ' min';
+    const longest = words.reduce((a, b) => a.length > b.length ? a : b, '').replace(/[^a-zA-Z]/g,'');
+    document.getElementById('longestWord').textContent = longest || '–';
+
+    // Keywords
+    const freq = {};
+    words.forEach(w => {
+      const clean = w.toLowerCase().replace(/[^a-zA-Z]/g,'');
+      if (clean.length > 3) freq[clean] = (freq[clean] || 0) + 1;
+    });
+    const sorted = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0,8);
+    const kList = document.getElementById('keywordList');
+    if (sorted.length) {
+      document.getElementById('keywordSection').style.display = 'block';
+      kList.innerHTML = sorted.map(([word, count]) =>
+        `<div class="keyword-item">
+          <span class="kw-word">${word}</span>
+          <div class="kw-bar-wrap"><div class="kw-bar" style="width:${Math.min(100, count/sorted[0][1]*100)}%"></div></div>
+          <span class="kw-count">${count}x</span>
+        </div>`
+      ).join('');
+    } else {
+      document.getElementById('keywordSection').style.display = 'none';
+    }
+  } else {
+    document.getElementById('avgWordLen').textContent = '–';
+    document.getElementById('uniqueWords').textContent = '–';
+    document.getElementById('speakTime').textContent = '–';
+    document.getElementById('longestWord').textContent = '–';
+    document.getElementById('keywordSection').style.display = 'none';
+  }
+}
+
+function clearText() {
+  document.getElementById('textInput').value = '';
+  analyzeText();
+}
+
+function copyText() {
+  const text = document.getElementById('textInput').value;
+  if (!text) return showToast('Nothing to copy!');
+  navigator.clipboard.writeText(text).then(() => showToast('Text copied to clipboard! ✓'));
+}
+
+function sampleText() {
+  document.getElementById('textInput').value = `The quick brown fox jumps over the lazy dog. This sentence is often used as a typing exercise because it contains every letter of the alphabet.
+
+Word processing software has become an essential tool for writers, students, and professionals alike. Whether you're crafting a blog post, writing an academic paper, or composing a business report, knowing your word count is important.
+
+Search engines often reward longer, more comprehensive content. However, quality always matters more than quantity. Make sure your writing is clear, engaging, and provides real value to your readers. A well-written 800-word article can outperform a poorly written 2,000-word piece.`;
+  analyzeText();
+}
+
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const isOpen = answer.style.display === 'block';
+  document.querySelectorAll('.faq-a').forEach(a => a.style.display = 'none');
+  answer.style.display = isOpen ? 'none' : 'block';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Init
+ThemeManager && ThemeManager.init && ThemeManager.init();
+HeaderManager && HeaderManager.init && HeaderManager.init();
+</script>
+</body>
+</html>

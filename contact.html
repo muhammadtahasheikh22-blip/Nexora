@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Nexora – Your All-in-One Smart Toolkit</title>
+  <meta name="description" content="Get in touch with the Nexora team. We're here to help with tool issues, billing questions, partnership inquiries, and general feedback." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nexora.com/contact" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#tools" class="nav-link">Tools</a>
+      <a href="typing.html" class="nav-link">Typing</a>
+      <a href="index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="theme-icon">☀️</span></button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main style="padding-top:calc(var(--header-h) + 2rem); padding-bottom:4rem;">
+  <div class="container">
+
+    <div style="text-align:center;margin-bottom:3rem;">
+      <div style="font-size:0.85rem;color:var(--text3);margin-bottom:0.75rem;"><a href="index.html" style="color:var(--text3);">Home</a> / Contact Us</div>
+      <h1 style="font-family:var(--font-display);font-size:2.5rem;font-weight:800;margin-bottom:0.5rem;">Get In Touch</h1>
+      <p style="color:var(--text2);max-width:500px;margin:0 auto;">Have a question, found a bug, or just want to say hello? We'd love to hear from you. We usually respond within 24–48 hours.</p>
+    </div>
+
+    <div class="contact-layout">
+
+      <!-- Contact Form -->
+      <div class="contact-form-card tool-card">
+        <h2 style="margin-bottom:1.5rem;">Send Us a Message</h2>
+        <div id="formSuccess" style="display:none;padding:1rem;background:rgba(0,255,135,0.1);border:1px solid var(--green);border-radius:var(--radius-sm);color:var(--green);margin-bottom:1rem;">
+          ✅ Thank you! Your message has been sent. We'll get back to you within 24–48 hours.
+        </div>
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="contact-form-grid">
+            <div class="cf-field">
+              <label>Full Name *</label>
+              <input type="text" id="cfName" class="tool-input" placeholder="Your full name" required />
+            </div>
+            <div class="cf-field">
+              <label>Email Address *</label>
+              <input type="email" id="cfEmail" class="tool-input" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="cf-field">
+            <label>Subject *</label>
+            <select id="cfSubject" class="tool-input" required>
+              <option value="">Select a subject...</option>
+              <option value="bug">🐛 Report a Bug</option>
+              <option value="feature">💡 Feature Request</option>
+              <option value="billing">💳 Billing / Subscription</option>
+              <option value="partnership">🤝 Partnership / Advertising</option>
+              <option value="general">💬 General Question</option>
+              <option value="other">📬 Other</option>
+            </select>
+          </div>
+          <div class="cf-field">
+            <label>Message *</label>
+            <textarea id="cfMessage" class="tool-textarea" placeholder="Describe your question or issue in detail..." rows="6" required></textarea>
+          </div>
+          <div class="cf-field" style="flex-direction:row;align-items:center;gap:0.75rem;">
+            <input type="checkbox" id="cfConsent" required style="width:18px;height:18px;accent-color:var(--purple);" />
+            <label for="cfConsent" style="font-size:0.85rem;color:var(--text2);cursor:pointer;">I agree to the <a href="privacy.html" style="color:var(--purple);">Privacy Policy</a> and consent to Nexora storing my information for the purpose of responding to my inquiry.</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:0.75rem;">Send Message ✉️</button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info-col">
+
+        <div class="tool-card contact-info-item">
+          <div class="contact-info-icon">📧</div>
+          <h3>Email Us</h3>
+          <p style="color:var(--text2);font-size:0.9rem;margin-bottom:0.5rem;">General inquiries and support</p>
+          <a href="mailto:hello@nexora.com" style="color:var(--purple);font-weight:600;">hello@nexora.com</a>
+        </div>
+
+        <div class="tool-card contact-info-item">
+          <div class="contact-info-icon">💳</div>
+          <h3>Billing Support</h3>
+          <p style="color:var(--text2);font-size:0.9rem;margin-bottom:0.5rem;">Subscription and payment issues</p>
+          <a href="mailto:billing@nexora.com" style="color:var(--purple);font-weight:600;">billing@nexora.com</a>
+        </div>
+
+        <div class="tool-card contact-info-item">
+          <div class="contact-info-icon">🤝</div>
+          <h3>Partnerships</h3>
+          <p style="color:var(--text2);font-size:0.9rem;margin-bottom:0.5rem;">Business and advertising inquiries</p>
+          <a href="mailto:partners@nexora.com" style="color:var(--purple);font-weight:600;">partners@nexora.com</a>
+        </div>
+
+        <div class="tool-card contact-info-item">
+          <div class="contact-info-icon">⏱️</div>
+          <h3>Response Time</h3>
+          <p style="color:var(--text2);font-size:0.9rem;">We typically respond to all inquiries within <strong style="color:var(--text);">24–48 hours</strong> during business days (Mon–Fri).</p>
+        </div>
+
+        <div class="tool-card">
+          <h3 style="margin-bottom:0.75rem;">Frequently Asked</h3>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <a href="privacy.html" class="sidebar-tool-link" style="padding:0.5rem 0.75rem;background:var(--bg3);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text2);">🔒 Privacy Policy</a>
+            <a href="terms.html" class="sidebar-tool-link" style="padding:0.5rem 0.75rem;background:var(--bg3);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text2);">📜 Terms of Service</a>
+            <a href="about.html" class="sidebar-tool-link" style="padding:0.5rem 0.75rem;background:var(--bg3);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text2);">ℹ️ About Nexora</a>
+            <a href="index.html#pricing" class="sidebar-tool-link" style="padding:0.5rem 0.75rem;background:var(--bg3);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text2);">💎 Pricing Plans</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<style>
+.contact-layout { display:grid; grid-template-columns:1fr 380px; gap:2rem; align-items:start; }
+@media(max-width:900px){ .contact-layout { grid-template-columns:1fr; } }
+.contact-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+@media(max-width:600px){ .contact-form-grid { grid-template-columns:1fr; } }
+.cf-field { display:flex; flex-direction:column; gap:0.35rem; margin-bottom:1rem; }
+.cf-field label { font-size:0.85rem; font-weight:600; color:var(--text2); }
+.contact-info-col { display:flex; flex-direction:column; gap:1rem; }
+.contact-info-item { display:flex; flex-direction:column; }
+.contact-info-icon { font-size:1.8rem; margin-bottom:0.5rem; }
+.contact-info-item h3 { font-family:var(--font-display); font-size:1rem; font-weight:700; margin-bottom:0.25rem; }
+</style>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('theme', n);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+});
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+
+function submitForm(e) {
+  e.preventDefault();
+  // Simulate form submission (connect to backend/FormSubmit/EmailJS in production)
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+  window.scrollTo({ top: 300, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

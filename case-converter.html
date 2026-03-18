@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Converter – Free Online Text Case Changer | Nexora</title>
+  <meta name="description" content="Free online case converter. Convert text to UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case and more. No signup needed." />
+  <meta name="keywords" content="case converter, text case changer, uppercase converter, lowercase converter, title case, sentence case" />
+  <meta property="og:title" content="Case Converter – Nexora" />
+  <meta property="og:description" content="Convert text to any case format instantly. Free online tool." />
+  <link rel="canonical" href="https://nexora.com/tools/case-converter" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Case Converter",
+    "url": "https://nexora.com/tools/case-converter",
+    "description": "Free online text case converter tool",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any"
+  }
+  </script>
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">N</span>
+      <span class="logo-text">Nexora</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb">
+      <a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Case Converter
+    </div>
+    <h1 class="tool-hero-title">🔡 Case Converter</h1>
+    <p class="tool-hero-sub">Transform your text into any case format instantly — UPPER, lower, Title, Sentence, camelCase & more.</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+    <!-- Ad Slot Top -->
+    <div class="ad-slot ad-slot-top" style="display:none;">
+      <!-- ca-pub-XXXXXXXX -->
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <h2>Enter Your Text</h2>
+        <div class="wc-stat-mini" id="charCounter">0 characters</div>
+      </div>
+      <textarea id="inputText" class="tool-textarea" placeholder="Paste or type your text here..." rows="8" oninput="updateCounter()"></textarea>
+      <div class="tool-actions-bar">
+        <button class="btn btn-ghost btn-sm" onclick="clearAll()">🗑 Clear</button>
+        <button class="btn btn-ghost btn-sm" onclick="pasteText()">📋 Paste</button>
+        <button class="btn btn-ghost btn-sm" onclick="copyOutput()">📄 Copy Result</button>
+      </div>
+    </div>
+
+    <!-- Case Buttons -->
+    <div class="tool-card">
+      <h2 style="margin-bottom:1rem;">Choose Case Format</h2>
+      <div class="case-buttons-grid">
+        <button class="case-btn active" data-case="upper" onclick="convertCase('upper')">
+          <span class="case-btn-icon">AA</span>
+          <span class="case-btn-label">UPPERCASE</span>
+          <span class="case-btn-example">HELLO WORLD</span>
+        </button>
+        <button class="case-btn" data-case="lower" onclick="convertCase('lower')">
+          <span class="case-btn-icon">aa</span>
+          <span class="case-btn-label">lowercase</span>
+          <span class="case-btn-example">hello world</span>
+        </button>
+        <button class="case-btn" data-case="title" onclick="convertCase('title')">
+          <span class="case-btn-icon">Aa</span>
+          <span class="case-btn-label">Title Case</span>
+          <span class="case-btn-example">Hello World</span>
+        </button>
+        <button class="case-btn" data-case="sentence" onclick="convertCase('sentence')">
+          <span class="case-btn-icon">A_</span>
+          <span class="case-btn-label">Sentence case</span>
+          <span class="case-btn-example">Hello world</span>
+        </button>
+        <button class="case-btn" data-case="camel" onclick="convertCase('camel')">
+          <span class="case-btn-icon">aA</span>
+          <span class="case-btn-label">camelCase</span>
+          <span class="case-btn-example">helloWorld</span>
+        </button>
+        <button class="case-btn" data-case="pascal" onclick="convertCase('pascal')">
+          <span class="case-btn-icon">AA</span>
+          <span class="case-btn-label">PascalCase</span>
+          <span class="case-btn-example">HelloWorld</span>
+        </button>
+        <button class="case-btn" data-case="snake" onclick="convertCase('snake')">
+          <span class="case-btn-icon">a_b</span>
+          <span class="case-btn-label">snake_case</span>
+          <span class="case-btn-example">hello_world</span>
+        </button>
+        <button class="case-btn" data-case="kebab" onclick="convertCase('kebab')">
+          <span class="case-btn-icon">a-b</span>
+          <span class="case-btn-label">kebab-case</span>
+          <span class="case-btn-example">hello-world</span>
+        </button>
+        <button class="case-btn" data-case="constant" onclick="convertCase('constant')">
+          <span class="case-btn-icon">A_B</span>
+          <span class="case-btn-label">CONSTANT_CASE</span>
+          <span class="case-btn-example">HELLO_WORLD</span>
+        </button>
+        <button class="case-btn" data-case="alternate" onclick="convertCase('alternate')">
+          <span class="case-btn-icon">aA</span>
+          <span class="case-btn-label">aLtErNaTe</span>
+          <span class="case-btn-example">hElLo WoRlD</span>
+        </button>
+        <button class="case-btn" data-case="inverse" onclick="convertCase('inverse')">
+          <span class="case-btn-icon">Aa</span>
+          <span class="case-btn-label">iNVERSE</span>
+          <span class="case-btn-example">hELLO wORLD</span>
+        </button>
+        <button class="case-btn" data-case="dot" onclick="convertCase('dot')">
+          <span class="case-btn-icon">a.b</span>
+          <span class="case-btn-label">dot.case</span>
+          <span class="case-btn-example">hello.world</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div class="tool-card" id="outputCard" style="display:none;">
+      <div class="tool-card-header">
+        <h2>Result <span id="activeCase" style="color:var(--purple);font-size:0.85em;"></span></h2>
+        <button class="btn btn-primary btn-sm" onclick="copyOutput()">📋 Copy</button>
+      </div>
+      <div id="outputText" class="tool-output-box"></div>
+      <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
+        <button class="btn btn-ghost btn-sm" onclick="useOutputAsInput()">↩ Use as Input</button>
+        <button class="btn btn-ghost btn-sm" onclick="downloadOutput()">⬇ Download .txt</button>
+      </div>
+    </div>
+
+    <!-- Ad Slot Mid -->
+    <div class="ad-slot" style="display:none;"></div>
+
+    <!-- FAQ -->
+    <div class="tool-card faq-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is a case converter?</button>
+          <div class="faq-a">A case converter is a text formatting tool that changes the capitalization style of your text. It can transform text into formats like UPPERCASE, lowercase, Title Case, and many programming-friendly formats like camelCase or snake_case.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is camelCase used for?</button>
+          <div class="faq-a">camelCase is widely used in programming, especially for variable names in JavaScript, Java, and other languages. Example: <code>myVariableName</code>. The first word is lowercase and each subsequent word starts with a capital letter.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is snake_case?</button>
+          <div class="faq-a">snake_case uses underscores between words and all letters are typically lowercase. It's commonly used in Python, Ruby, and database column names. Example: <code>my_variable_name</code>.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Is this tool free to use?</button>
+          <div class="faq-a">Yes! Nexora's Case Converter is completely free to use with no sign-up required. You can convert unlimited text right in your browser.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="tool-sidebar">
+    <div class="tool-card sidebar-stats-card">
+      <h3>📊 Text Stats</h3>
+      <div class="sidebar-stat-list">
+        <div class="sidebar-stat"><span>Words</span><strong id="s-words">0</strong></div>
+        <div class="sidebar-stat"><span>Characters</span><strong id="s-chars">0</strong></div>
+        <div class="sidebar-stat"><span>Lines</span><strong id="s-lines">0</strong></div>
+        <div class="sidebar-stat"><span>Spaces</span><strong id="s-spaces">0</strong></div>
+      </div>
+    </div>
+    <div class="tool-card">
+      <h3>🔧 More Tools</h3>
+      <div class="sidebar-tool-links">
+        <a href="word-counter.html" class="sidebar-tool-link">📝 Word Counter</a>
+        <a href="password-generator.html" class="sidebar-tool-link">🔐 Password Generator</a>
+        <a href="qr-generator.html" class="sidebar-tool-link">📱 QR Generator</a>
+        <a href="bmi-calculator.html" class="sidebar-tool-link">⚖️ BMI Calculator</a>
+        <a href="age-calculator.html" class="sidebar-tool-link">🎂 Age Calculator</a>
+        <a href="percentage-calculator.html" class="sidebar-tool-link">% Percentage Calc</a>
+      </div>
+    </div>
+    <!-- Sidebar Ad -->
+    <div class="ad-slot ad-slot-sidebar" style="display:none;"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<style>
+.case-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+.case-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem 0.75rem;
+  background: var(--bg3);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+  color: var(--text);
+}
+.case-btn:hover, .case-btn.active {
+  border-color: var(--purple);
+  background: rgba(108,99,255,0.1);
+  color: var(--purple);
+}
+.case-btn-icon { font-size: 1.4rem; font-weight: 700; font-family: monospace; }
+.case-btn-label { font-size: 0.75rem; font-weight: 600; text-align: center; }
+.case-btn-example { font-size: 0.65rem; color: var(--text3); font-family: monospace; }
+.tool-output-box {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  min-height: 120px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.wc-stat-mini { font-size: 0.8rem; color: var(--text3); }
+.tool-actions-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+.sidebar-stat-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
+.sidebar-stat { display: flex; justify-content: space-between; font-size: 0.9rem; }
+.sidebar-tool-links { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.75rem; }
+.sidebar-tool-link {
+  padding: 0.5rem 0.75rem;
+  background: var(--bg3);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  transition: all var(--transition);
+  color: var(--text2);
+}
+.sidebar-tool-link:hover { background: rgba(108,99,255,0.1); color: var(--purple); }
+</style>
+
+<script>
+// Theme
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = next === 'dark' ? '☀️' : '🌙';
+});
+
+// Hamburger
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('nav').classList.toggle('open');
+});
+
+let currentCase = 'upper';
+let outputResult = '';
+
+function updateCounter() {
+  const text = document.getElementById('inputText').value;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  document.getElementById('charCounter').textContent = text.length + ' characters';
+  document.getElementById('s-words').textContent = words;
+  document.getElementById('s-chars').textContent = text.length;
+  document.getElementById('s-lines').textContent = text ? text.split('\n').length : 0;
+  document.getElementById('s-spaces').textContent = (text.match(/ /g) || []).length;
+  if (text.trim()) convertCase(currentCase);
+}
+
+function convertCase(type) {
+  currentCase = type;
+  const text = document.getElementById('inputText').value;
+  // Update active button
+  document.querySelectorAll('.case-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.case === type);
+  });
+  if (!text.trim()) return;
+
+  let result = '';
+  switch(type) {
+    case 'upper': result = text.toUpperCase(); break;
+    case 'lower': result = text.toLowerCase(); break;
+    case 'title':
+      result = text.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+      break;
+    case 'sentence':
+      result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+      break;
+    case 'camel':
+      result = text.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase());
+      result = result.charAt(0).toLowerCase() + result.slice(1);
+      break;
+    case 'pascal':
+      result = text.toLowerCase().replace(/(^|[^a-zA-Z0-9]+)(.)/g, (_, sep, c) => c.toUpperCase());
+      break;
+    case 'snake':
+      result = text.trim().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '').toLowerCase();
+      break;
+    case 'kebab':
+      result = text.trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
+      break;
+    case 'constant':
+      result = text.trim().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '').toUpperCase();
+      break;
+    case 'alternate':
+      result = text.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join('');
+      break;
+    case 'inverse':
+      result = text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+      break;
+    case 'dot':
+      result = text.trim().replace(/\s+/g, '.').replace(/[^a-zA-Z0-9.]/g, '').toLowerCase();
+      break;
+  }
+  outputResult = result;
+  document.getElementById('outputText').textContent = result;
+  const caseNames = {upper:'UPPERCASE',lower:'lowercase',title:'Title Case',sentence:'Sentence case',camel:'camelCase',pascal:'PascalCase',snake:'snake_case',kebab:'kebab-case',constant:'CONSTANT_CASE',alternate:'aLtErNaTe',inverse:'iNVERSE cAsE',dot:'dot.case'};
+  document.getElementById('activeCase').textContent = '→ ' + (caseNames[type] || type);
+  document.getElementById('outputCard').style.display = 'block';
+}
+
+function clearAll() {
+  document.getElementById('inputText').value = '';
+  document.getElementById('outputCard').style.display = 'none';
+  updateCounter();
+}
+
+async function pasteText() {
+  try {
+    const text = await navigator.clipboard.readText();
+    document.getElementById('inputText').value = text;
+    updateCounter();
+  } catch { showToast('Paste failed. Please paste manually.'); }
+}
+
+function copyOutput() {
+  if (!outputResult) { showToast('Nothing to copy!'); return; }
+  navigator.clipboard.writeText(outputResult).then(() => showToast('✅ Copied to clipboard!'));
+}
+
+function useOutputAsInput() {
+  if (!outputResult) return;
+  document.getElementById('inputText').value = outputResult;
+  updateCounter();
+  window.scrollTo({ top: 300, behavior: 'smooth' });
+}
+
+function downloadOutput() {
+  if (!outputResult) return;
+  const blob = new Blob([outputResult], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'nexora-converted-text.txt'; a.click();
+}
+
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

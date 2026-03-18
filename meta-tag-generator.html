@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta Tag Generator – Free SEO Meta Tags Tool | Nexora</title>
+  <meta name="description" content="Free meta tag generator for SEO. Generate complete HTML meta tags including Open Graph, Twitter Cards, and schema markup. Copy and paste into your website." />
+  <meta name="keywords" content="meta tag generator, SEO meta tags, open graph generator, twitter card generator, HTML meta tags" />
+  <meta property="og:title" content="Meta Tag Generator – Nexora" />
+  <meta property="og:description" content="Generate complete SEO meta tags including Open Graph and Twitter Cards. Free online tool." />
+  <link rel="canonical" href="https://nexora.com/tools/meta-tag-generator" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb">
+      <a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Meta Tag Generator
+    </div>
+    <h1 class="tool-hero-title">🏷️ Meta Tag Generator</h1>
+    <p class="tool-hero-sub">Generate complete SEO meta tags, Open Graph & Twitter Card tags for your website — instantly.</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+
+    <!-- Form -->
+    <div class="tool-card">
+      <h2 style="margin-bottom:1.25rem;">Website Information</h2>
+      <div class="meta-form">
+        <div class="meta-field">
+          <label>Page Title <span class="meta-count" id="titleCount">0/60</span></label>
+          <input type="text" id="metaTitle" class="tool-input" placeholder="e.g. Free Online Tools – Nexora" maxlength="70" oninput="updatePreview()" />
+          <div class="meta-hint">Recommended: 50–60 characters</div>
+        </div>
+        <div class="meta-field">
+          <label>Meta Description <span class="meta-count" id="descCount">0/160</span></label>
+          <textarea id="metaDesc" class="tool-textarea" style="height:80px;" placeholder="Brief description of your page (appears in search results)" maxlength="170" oninput="updatePreview()"></textarea>
+          <div class="meta-hint">Recommended: 120–160 characters</div>
+        </div>
+        <div class="meta-field">
+          <label>Keywords (comma-separated)</label>
+          <input type="text" id="metaKeywords" class="tool-input" placeholder="e.g. online tools, free tools, web utilities" oninput="updatePreview()" />
+        </div>
+        <div class="meta-row-2">
+          <div class="meta-field">
+            <label>Author</label>
+            <input type="text" id="metaAuthor" class="tool-input" placeholder="Your name or company" oninput="updatePreview()" />
+          </div>
+          <div class="meta-field">
+            <label>Canonical URL</label>
+            <input type="text" id="metaCanonical" class="tool-input" placeholder="https://yoursite.com/page" oninput="updatePreview()" />
+          </div>
+        </div>
+        <hr style="border-color:var(--border);margin:0.5rem 0;" />
+        <h3 style="margin:0.5rem 0;">Open Graph (Facebook / LinkedIn)</h3>
+        <div class="meta-row-2">
+          <div class="meta-field">
+            <label>OG Title</label>
+            <input type="text" id="ogTitle" class="tool-input" placeholder="Same as page title usually" oninput="updatePreview()" />
+          </div>
+          <div class="meta-field">
+            <label>OG Image URL</label>
+            <input type="text" id="ogImage" class="tool-input" placeholder="https://yoursite.com/og-image.jpg" oninput="updatePreview()" />
+          </div>
+        </div>
+        <div class="meta-field">
+          <label>OG Description</label>
+          <textarea id="ogDesc" class="tool-textarea" style="height:60px;" placeholder="Description for social sharing" oninput="updatePreview()"></textarea>
+        </div>
+        <div class="meta-row-2">
+          <div class="meta-field">
+            <label>OG Type</label>
+            <select id="ogType" class="tool-input" onchange="updatePreview()">
+              <option value="website">website</option>
+              <option value="article">article</option>
+              <option value="product">product</option>
+              <option value="profile">profile</option>
+            </select>
+          </div>
+          <div class="meta-field">
+            <label>Site Name</label>
+            <input type="text" id="ogSiteName" class="tool-input" placeholder="e.g. Nexora" oninput="updatePreview()" />
+          </div>
+        </div>
+        <hr style="border-color:var(--border);margin:0.5rem 0;" />
+        <h3 style="margin:0.5rem 0;">Twitter Card</h3>
+        <div class="meta-row-2">
+          <div class="meta-field">
+            <label>Card Type</label>
+            <select id="twitterCard" class="tool-input" onchange="updatePreview()">
+              <option value="summary_large_image">summary_large_image</option>
+              <option value="summary">summary</option>
+            </select>
+          </div>
+          <div class="meta-field">
+            <label>Twitter Handle</label>
+            <input type="text" id="twitterHandle" class="tool-input" placeholder="@yourusername" oninput="updatePreview()" />
+          </div>
+        </div>
+        <div class="meta-row-2">
+          <div class="meta-field">
+            <label>Robots</label>
+            <select id="metaRobots" class="tool-input" onchange="updatePreview()">
+              <option value="index, follow">index, follow (recommended)</option>
+              <option value="noindex, follow">noindex, follow</option>
+              <option value="index, nofollow">index, nofollow</option>
+              <option value="noindex, nofollow">noindex, nofollow</option>
+            </select>
+          </div>
+          <div class="meta-field">
+            <label>Language</label>
+            <select id="metaLang" class="tool-input" onchange="updatePreview()">
+              <option value="en">English</option>
+              <option value="ur">Urdu</option>
+              <option value="ar">Arabic</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="es">Spanish</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google SERP Preview -->
+    <div class="tool-card">
+      <h2 style="margin-bottom:1rem;">🔍 Google Preview</h2>
+      <div class="serp-preview">
+        <div class="serp-url" id="serpUrl">https://yoursite.com/page</div>
+        <div class="serp-title" id="serpTitle">Your Page Title Here</div>
+        <div class="serp-desc" id="serpDesc">Your meta description will appear here. Make it compelling to increase click-through rates from search results.</div>
+      </div>
+    </div>
+
+    <!-- Generated Code -->
+    <div class="tool-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <h2>📋 Generated Meta Tags</h2>
+        <div style="display:flex;gap:0.5rem;">
+          <button class="btn btn-ghost btn-sm" onclick="copyCode()">📋 Copy All</button>
+          <button class="btn btn-primary btn-sm" onclick="downloadCode()">⬇ Download</button>
+        </div>
+      </div>
+      <pre id="codeOutput" class="code-output"><code id="codeContent"><!-- Fill in the form above to generate meta tags --></code></pre>
+    </div>
+
+    <!-- FAQ -->
+    <div class="tool-card faq-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What are meta tags?</button>
+          <div class="faq-a">Meta tags are HTML elements that provide information about a webpage to search engines and social media platforms. They are placed in the &lt;head&gt; section and are not visible on the page itself, but they influence how your page appears in search results and when shared on social media.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is Open Graph?</button>
+          <div class="faq-a">Open Graph (OG) tags are meta tags created by Facebook that control how URLs are displayed when shared on social media. They allow you to specify the title, description, image, and type of content for social sharing previews on Facebook, LinkedIn, WhatsApp, and other platforms.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Do meta keywords still matter for SEO?</button>
+          <div class="faq-a">Google no longer uses meta keywords as a ranking factor. However, other search engines like Bing may still consider them. The most important meta tags for SEO today are the title tag and meta description, as they directly affect your click-through rate in search results.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-sidebar">
+    <div class="tool-card">
+      <h3>📊 SEO Score</h3>
+      <div id="seoScore" style="margin-top:0.75rem;">
+        <div class="seo-score-item" id="sScore-title">⚪ Title: Not set</div>
+        <div class="seo-score-item" id="sScore-desc">⚪ Description: Not set</div>
+        <div class="seo-score-item" id="sScore-og">⚪ Open Graph: Not set</div>
+        <div class="seo-score-item" id="sScore-twitter">⚪ Twitter Card: Not set</div>
+        <div class="seo-score-item" id="sScore-canonical">⚪ Canonical: Not set</div>
+      </div>
+    </div>
+    <div class="tool-card">
+      <h3>🔧 More SEO Tools</h3>
+      <div class="sidebar-tool-links">
+        <a href="word-counter.html" class="sidebar-tool-link">📝 Word Counter</a>
+        <a href="qr-generator.html" class="sidebar-tool-link">📱 QR Generator</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<style>
+.meta-form { display:flex; flex-direction:column; gap:1rem; }
+.meta-field { display:flex; flex-direction:column; gap:0.3rem; }
+.meta-field label { font-size:0.85rem; font-weight:600; color:var(--text2); display:flex; justify-content:space-between; }
+.meta-count { font-weight:400; color:var(--text3); }
+.meta-hint { font-size:0.72rem; color:var(--text3); }
+.meta-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+@media(max-width:600px){ .meta-row-2 { grid-template-columns:1fr; } }
+.serp-preview { background:#fff; border-radius:var(--radius-sm); padding:1.25rem; }
+[data-theme="dark"] .serp-preview { background:#1e1e2e; border:1px solid var(--border); }
+.serp-url { font-size:0.8rem; color:#006621; margin-bottom:0.2rem; }
+[data-theme="dark"] .serp-url { color:#81c784; }
+.serp-title { font-size:1.15rem; color:#1a0dab; font-weight:400; margin-bottom:0.25rem; line-height:1.3; }
+[data-theme="dark"] .serp-title { color:#8ab4f8; }
+.serp-desc { font-size:0.85rem; color:#545454; line-height:1.5; }
+[data-theme="dark"] .serp-desc { color:#bdc1c6; }
+.code-output { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius-sm); padding:1.25rem; overflow-x:auto; max-height:400px; overflow-y:auto; }
+.code-output code { font-family:monospace; font-size:0.82rem; color:var(--text); line-height:1.7; white-space:pre; }
+.seo-score-item { font-size:0.85rem; padding:0.4rem 0; border-bottom:1px solid var(--border); color:var(--text2); }
+.sidebar-tool-links { display:flex; flex-direction:column; gap:0.4rem; margin-top:0.75rem; }
+.sidebar-tool-link { padding:0.5rem 0.75rem; background:var(--bg3); border-radius:var(--radius-sm); font-size:0.85rem; transition:all var(--transition); color:var(--text2); }
+.sidebar-tool-link:hover { background:rgba(108,99,255,0.1); color:var(--purple); }
+</style>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('theme', n);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+});
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function updatePreview() {
+  const title = document.getElementById('metaTitle').value;
+  const desc = document.getElementById('metaDesc').value;
+  const keywords = document.getElementById('metaKeywords').value;
+  const author = document.getElementById('metaAuthor').value;
+  const canonical = document.getElementById('metaCanonical').value;
+  const ogTitle = document.getElementById('ogTitle').value || title;
+  const ogDesc = document.getElementById('ogDesc').value || desc;
+  const ogImage = document.getElementById('ogImage').value;
+  const ogType = document.getElementById('ogType').value;
+  const ogSiteName = document.getElementById('ogSiteName').value;
+  const twitterCard = document.getElementById('twitterCard').value;
+  const twitterHandle = document.getElementById('twitterHandle').value;
+  const robots = document.getElementById('metaRobots').value;
+  const lang = document.getElementById('metaLang').value;
+
+  // Counter
+  document.getElementById('titleCount').textContent = title.length + '/60';
+  document.getElementById('titleCount').style.color = title.length > 60 ? '#ff6b6b' : title.length >= 50 ? 'var(--green)' : 'var(--text3)';
+  document.getElementById('descCount').textContent = desc.length + '/160';
+  document.getElementById('descCount').style.color = desc.length > 160 ? '#ff6b6b' : desc.length >= 120 ? 'var(--green)' : 'var(--text3)';
+
+  // SERP preview
+  document.getElementById('serpTitle').textContent = title || 'Your Page Title Here';
+  document.getElementById('serpDesc').textContent = desc || 'Your meta description will appear here.';
+  document.getElementById('serpUrl').textContent = canonical || 'https://yoursite.com/page';
+
+  // Build code
+  let code = `<!-- Primary Meta Tags -->\n`;
+  code += `<meta charset="UTF-8" />\n`;
+  code += `<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n`;
+  if (title) code += `<title>${esc(title)}</title>\n<meta name="title" content="${esc(title)}" />\n`;
+  if (desc) code += `<meta name="description" content="${esc(desc)}" />\n`;
+  if (keywords) code += `<meta name="keywords" content="${esc(keywords)}" />\n`;
+  if (author) code += `<meta name="author" content="${esc(author)}" />\n`;
+  code += `<meta name="robots" content="${robots}" />\n`;
+  code += `<meta http-equiv="Content-Language" content="${lang}" />\n`;
+  if (canonical) code += `<link rel="canonical" href="${esc(canonical)}" />\n`;
+
+  code += `\n<!-- Open Graph / Facebook -->\n`;
+  code += `<meta property="og:type" content="${ogType}" />\n`;
+  if (canonical) code += `<meta property="og:url" content="${esc(canonical)}" />\n`;
+  if (ogTitle) code += `<meta property="og:title" content="${esc(ogTitle)}" />\n`;
+  if (ogDesc) code += `<meta property="og:description" content="${esc(ogDesc)}" />\n`;
+  if (ogImage) code += `<meta property="og:image" content="${esc(ogImage)}" />\n`;
+  if (ogSiteName) code += `<meta property="og:site_name" content="${esc(ogSiteName)}" />\n`;
+
+  code += `\n<!-- Twitter -->\n`;
+  code += `<meta property="twitter:card" content="${twitterCard}" />\n`;
+  if (canonical) code += `<meta property="twitter:url" content="${esc(canonical)}" />\n`;
+  if (ogTitle) code += `<meta property="twitter:title" content="${esc(ogTitle)}" />\n`;
+  if (ogDesc) code += `<meta property="twitter:description" content="${esc(ogDesc)}" />\n`;
+  if (ogImage) code += `<meta property="twitter:image" content="${esc(ogImage)}" />\n`;
+  if (twitterHandle) code += `<meta name="twitter:site" content="${esc(twitterHandle)}" />\n`;
+
+  document.getElementById('codeContent').textContent = code;
+
+  // SEO score
+  document.getElementById('sScore-title').textContent = title ? (title.length >= 50 && title.length <= 60 ? '✅' : '⚠️') + ' Title: ' + title.length + ' chars' : '❌ Title: Not set';
+  document.getElementById('sScore-desc').textContent = desc ? (desc.length >= 120 && desc.length <= 160 ? '✅' : '⚠️') + ' Description: ' + desc.length + ' chars' : '❌ Description: Not set';
+  document.getElementById('sScore-og').textContent = (ogTitle && ogImage) ? '✅ Open Graph: Set' : '⚠️ Open Graph: Incomplete';
+  document.getElementById('sScore-twitter').textContent = twitterCard ? '✅ Twitter Card: Set' : '⚪ Twitter Card: Not set';
+  document.getElementById('sScore-canonical').textContent = canonical ? '✅ Canonical: Set' : '⚠️ Canonical: Not set';
+}
+
+function copyCode() {
+  const code = document.getElementById('codeContent').textContent;
+  navigator.clipboard.writeText(code).then(() => showToast('✅ Meta tags copied!'));
+}
+
+function downloadCode() {
+  const code = document.getElementById('codeContent').textContent;
+  const blob = new Blob([code], { type: 'text/html' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'meta-tags.html'; a.click();
+}
+
+function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+updatePreview();
+</script>
+</body>
+</html>

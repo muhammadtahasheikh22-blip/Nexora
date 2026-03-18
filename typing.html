@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typing Speed Test – Free WPM Test Online | Nexora</title>
+  <meta name="description" content="Test your typing speed online for free. Get WPM, accuracy, and detailed stats. Multiple difficulty levels and timed tests available. No signup needed." />
+  <link rel="canonical" href="https://nexora.com/typing" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="tools.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Nexora Typing Speed Test",
+    "url": "https://nexora.com/typing",
+    "description": "Free online typing speed test - measure WPM and accuracy",
+    "applicationCategory": "EducationalApplication"
+  }
+  </script>
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#tools" class="nav-link">Tools</a>
+      <a href="typing.html" class="nav-link active">Typing</a>
+      <a href="index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle"><span class="theme-icon">☀️</span></button>
+      <a href="index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div style="padding-top:var(--header-h)"></div>
+
+<div class="container" style="padding-top:2rem;padding-bottom:4rem">
+  <div class="typing-container">
+
+    <!-- Page Header -->
+    <div style="text-align:center;margin-bottom:2rem">
+      <h1 style="font-family:var(--font-display);font-size:2.2rem;font-weight:800;margin-bottom:0.5rem">
+        ⌨️ Typing Speed Test
+      </h1>
+      <p style="color:var(--text2)">Measure your WPM, accuracy, and errors in real time</p>
+    </div>
+
+    <!-- Controls -->
+    <div class="typing-controls">
+      <div>
+        <span style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;display:block;margin-bottom:0.4rem">Time</span>
+        <div class="control-group" id="timeGroup">
+          <button class="ctrl-btn active" onclick="setTime(15, this)">15s</button>
+          <button class="ctrl-btn" onclick="setTime(30, this)">30s</button>
+          <button class="ctrl-btn" onclick="setTime(60, this)">1 min</button>
+          <button class="ctrl-btn" onclick="setTime(180, this)">3 min</button>
+          <button class="ctrl-btn" onclick="setTime(300, this)">5 min</button>
+        </div>
+      </div>
+      <div>
+        <span style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;display:block;margin-bottom:0.4rem">Difficulty</span>
+        <div class="control-group" id="diffGroup">
+          <button class="ctrl-btn active" onclick="setDiff('easy', this)">Easy</button>
+          <button class="ctrl-btn" onclick="setDiff('medium', this)">Medium</button>
+          <button class="ctrl-btn" onclick="setDiff('hard', this)">Hard</button>
+        </div>
+      </div>
+      <div>
+        <span style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;display:block;margin-bottom:0.4rem">Mode</span>
+        <div class="control-group">
+          <button class="ctrl-btn active" onclick="setMode('words', this)">Words</button>
+          <button class="ctrl-btn" onclick="setMode('quotes', this)">Quotes</button>
+          <button class="ctrl-btn" onclick="setMode('numbers', this)">Numbers</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timer & Progress -->
+    <div style="margin-bottom:0.5rem">
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:100%"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.75rem">
+        <div class="timer-display" id="timerDisplay">15</div>
+        <div style="display:flex;gap:1.5rem;font-family:var(--font-display);font-size:1rem">
+          <div style="text-align:center"><div style="font-weight:800;color:var(--purple-light)" id="liveWpm">0</div><div style="font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">WPM</div></div>
+          <div style="text-align:center"><div style="font-weight:800;color:var(--green)" id="liveAcc">–</div><div style="font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">ACC</div></div>
+          <div style="text-align:center"><div style="font-weight:800;color:#FF5757" id="liveErrors">0</div><div style="font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">ERR</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typing Arena -->
+    <div class="typing-arena" id="typingArena" onclick="focusInput()">
+      <div class="typing-words" id="typingWords"></div>
+      <div class="live-wpm-display" id="liveWpmBig"></div>
+      <!-- Hidden real input -->
+      <input type="text" class="typing-real-input" id="typingInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem">
+      <button class="btn btn-primary btn-lg" id="startBtn" onclick="startTest()">Start Test ▶</button>
+      <button class="btn btn-ghost" id="resetBtn" onclick="resetTest()">↺ Reset</button>
+      <button class="btn btn-ghost" onclick="skipWord()">Skip Word →</button>
+    </div>
+
+    <p style="text-align:center;font-size:0.8rem;color:var(--text3)">Click the text area and start typing · Press <kbd style="background:var(--bg3);border:1px solid var(--border);padding:1px 5px;border-radius:4px">Tab</kbd> + <kbd style="background:var(--bg3);border:1px solid var(--border);padding:1px 5px;border-radius:4px">Enter</kbd> to restart</p>
+
+    <!-- Results -->
+    <div class="typing-results" id="typingResults">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:0.5rem">Test Complete! 🎉</h2>
+        <p style="color:var(--text3)">Here are your results</p>
+      </div>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-val" id="finalWpm">0</div>
+          <div class="result-label">WPM</div>
+        </div>
+        <div class="result-card">
+          <div class="result-val" id="finalAcc">0%</div>
+          <div class="result-label">Accuracy</div>
+        </div>
+        <div class="result-card">
+          <div class="result-val" id="finalErrors">0</div>
+          <div class="result-label">Errors</div>
+        </div>
+        <div class="result-card">
+          <div class="result-val" id="finalChars">0</div>
+          <div class="result-label">Chars/min</div>
+        </div>
+      </div>
+
+      <!-- Performance Message -->
+      <div id="performanceMsg" style="text-align:center;padding:1.25rem;background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:14px;margin-bottom:1.5rem"></div>
+
+      <!-- Action buttons after test -->
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary btn-lg" onclick="resetTest()">↺ Try Again</button>
+        <button class="btn btn-ghost" onclick="shareResult()">📤 Share Result</button>
+        <a href="index.html#pricing" class="btn btn-accent">🏆 Get Leaderboard Access</a>
+      </div>
+    </div>
+
+    <!-- Leaderboard (Premium Locked) -->
+    <div style="margin-top:2rem">
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:1rem">🏆 Global Leaderboard</h3>
+      <div class="premium-lock" style="border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <!-- Sample blurred data -->
+        <div style="padding:1rem;filter:blur(4px);pointer-events:none">
+          <div class="lb-row"><span class="lb-rank gold">1</span><span class="lb-name">🔥 SpeedDemon99</span><span class="lb-wpm">187 WPM</span><span class="lb-acc">99.2%</span></div>
+          <div class="lb-row"><span class="lb-rank silver">2</span><span class="lb-name">⚡ TypeMaster_Pro</span><span class="lb-wpm">174 WPM</span><span class="lb-acc">98.8%</span></div>
+          <div class="lb-row"><span class="lb-rank bronze">3</span><span class="lb-name">🚀 KeyboardWizard</span><span class="lb-wpm">168 WPM</span><span class="lb-acc">97.5%</span></div>
+          <div class="lb-row"><span class="lb-rank">4</span><span class="lb-name">💨 QuickFingers</span><span class="lb-wpm">162 WPM</span><span class="lb-acc">98.1%</span></div>
+          <div class="lb-row"><span class="lb-rank">5</span><span class="lb-name">🎯 PrecisionTyper</span><span class="lb-wpm">158 WPM</span><span class="lb-acc">99.7%</span></div>
+        </div>
+        <div class="lock-overlay">
+          <div class="lock-icon">🔒</div>
+          <div class="lock-title">Pro Feature</div>
+          <div class="lock-sub">Upgrade to see global rankings & compete</div>
+          <a href="index.html#pricing" class="btn btn-primary" style="margin-top:0.5rem">Unlock Leaderboard</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium Features Preview -->
+    <div style="margin-top:2rem;background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(0,255,135,0.05));border:1px solid rgba(108,99,255,0.2);border-radius:20px;padding:2rem">
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:1rem">⭐ Pro Typing Features</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem">
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem"><span>🔒</span> Progress Tracking Charts</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem"><span>🔒</span> Multiplayer Race Mode</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem"><span>🔒</span> Typing Games</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem"><span>🔒</span> Custom Text Practice</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem"><span>🔒</span> Downloadable Certificates</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem"><span>🔒</span> Global Leaderboard</div>
+      </div>
+      <a href="index.html#pricing" class="btn btn-accent">Upgrade to Pro – $9.99/mo →</a>
+    </div>
+  </div>
+</div>
+
+<div class="container ad-slot"><div class="ad-placeholder"><span>Advertisement</span></div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit.</p>
+    </div>
+    <div class="footer-col"><h4>Tools</h4><a href="tools/word-counter.html">Word Counter</a><a href="tools/bmi-calculator.html">BMI Calculator</a></div>
+    <div class="footer-col"><h4>Platform</h4><a href="typing.html">Typing Test</a><a href="index.html#pricing">Pricing</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 Nexora. All rights reserved.</p></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+<script>
+// ============================================================
+// WORD BANKS
+// ============================================================
+const wordBanks = {
+  easy: ['the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at', 'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she', 'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what', 'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me', 'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 'take', 'people', 'into', 'year', 'your', 'good', 'some', 'could', 'them', 'see', 'other', 'than', 'then', 'now', 'look', 'only', 'come', 'its', 'over', 'think', 'also', 'back', 'after', 'use', 'two', 'how', 'our', 'work', 'first', 'well', 'way', 'even', 'new', 'want', 'because', 'any', 'these', 'give', 'day', 'most', 'us'],
+  medium: ['important', 'development', 'government', 'different', 'information', 'experience', 'understand', 'business', 'national', 'education', 'community', 'following', 'available', 'professional', 'situation', 'technology', 'knowledge', 'beginning', 'everything', 'production', 'university', 'management', 'particular', 'opportunity', 'traditional', 'remember', 'decision', 'question', 'attention', 'evidence', 'condition', 'position', 'political', 'including', 'cultural', 'financial', 'structure', 'language', 'possible', 'research', 'building', 'personal', 'material', 'practice', 'standard', 'solution', 'challenge', 'continue', 'describe', 'complete'],
+  hard: ['accommodate', 'conscientious', 'extraordinary', 'perpendicular', 'sophisticated', 'simultaneously', 'approximately', 'philosophical', 'recommendations', 'circumstances', 'responsibilities', 'acknowledge', 'administrative', 'infrastructure', 'implementation', 'organizational', 'characteristics', 'representations', 'entrepreneurship', 'telecommunications', 'multidimensional', 'psychological', 'unprecedented', 'revolutionary', 'pharmaceutical'],
+  quotes: [
+    'The only way to do great work is to love what you do.',
+    'Innovation distinguishes between a leader and a follower.',
+    'The future belongs to those who believe in the beauty of their dreams.',
+    'Success is not final failure is not fatal it is the courage to continue that counts.',
+    'In the middle of every difficulty lies opportunity.',
+    'Life is what happens to you while you are busy making other plans.',
+    'The best time to plant a tree was twenty years ago the second best time is now.',
+    'An unexamined life is not worth living.',
+    'Spread love everywhere you go let no one ever come to you without leaving happier.',
+    'When you reach the end of your rope tie a knot in it and hang on.',
+  ],
+  numbers: ['12', '45', '789', '23', '567', '91', '234', '8', '456', '70', '1234', '56', '890', '345', '67', '123', '4567', '89', '0', '234', '5678', '90', '1', '2345', '678', '901', '2', '34', '567890', '12345']
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let state = {
+  words: [],
+  currentWordIndex: 0,
+  currentInput: '',
+  charIndex: 0,
+  totalChars: 0,
+  correctChars: 0,
+  errors: 0,
+  startTime: null,
+  timer: null,
+  timeLimit: 15,
+  timeLeft: 15,
+  difficulty: 'easy',
+  mode: 'words',
+  running: false,
+  finished: false,
+};
+
+// ============================================================
+// SETUP
+// ============================================================
+function setTime(t, btn) {
+  if (state.running) return;
+  state.timeLimit = t;
+  state.timeLeft = t;
+  document.getElementById('timerDisplay').textContent = t;
+  document.getElementById('progressBar').style.width = '100%';
+  document.querySelectorAll('#timeGroup .ctrl-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function setDiff(d, btn) {
+  if (state.running) return;
+  state.difficulty = d;
+  document.querySelectorAll('#diffGroup .ctrl-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  resetTest();
+}
+
+function setMode(m, btn) {
+  if (state.running) return;
+  state.mode = m;
+  document.querySelectorAll('.control-group .ctrl-btn').forEach(b => {
+    if (['words','quotes','numbers'].includes(b.textContent.trim().toLowerCase())) b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  resetTest();
+}
+
+function generateWords() {
+  if (state.mode === 'quotes') {
+    const quote = wordBanks.quotes[Math.floor(Math.random() * wordBanks.quotes.length)];
+    return quote.split(' ');
+  }
+  const bank = state.mode === 'numbers' ? wordBanks.numbers : (wordBanks[state.difficulty] || wordBanks.easy);
+  const count = 80;
+  const words = [];
+  for (let i = 0; i < count; i++) {
+    words.push(bank[Math.floor(Math.random() * bank.length)]);
+  }
+  return words;
+}
+
+function renderWords() {
+  const container = document.getElementById('typingWords');
+  container.innerHTML = state.words.map((word, wi) => {
+    const letters = word.split('').map((ch, ci) => {
+      let cls = 'letter';
+      if (wi < state.currentWordIndex) cls += ' correct';
+      else if (wi === state.currentWordIndex) {
+        if (ci < state.currentInput.length) {
+          cls += state.currentInput[ci] === ch ? ' correct' : ' wrong';
+        } else if (ci === state.currentInput.length) {
+          cls += ' active-cursor';
+        }
+      }
+      return `<span class="${cls}">${ch}</span>`;
+    }).join('');
+    return `<span class="word">${letters}</span>`;
+  }).join(' ');
+
+  // Scroll current word into view
+  const words = container.querySelectorAll('.word');
+  if (words[state.currentWordIndex]) {
+    const arena = document.getElementById('typingArena');
+    const wordTop = words[state.currentWordIndex].offsetTop;
+    if (wordTop > 80) {
+      container.style.transform = `translateY(-${wordTop - 40}px)`;
+    }
+  }
+}
+
+// ============================================================
+// GAME LOGIC
+// ============================================================
+function focusInput() {
+  document.getElementById('typingInput').focus();
+}
+
+function startTest() {
+  if (state.finished) { resetTest(); return; }
+  state.running = true;
+  document.getElementById('startBtn').textContent = 'Running...';
+  document.getElementById('typingResults').classList.remove('show');
+  focusInput();
+}
+
+function resetTest() {
+  clearInterval(state.timer);
+  state = {
+    ...state,
+    words: generateWords(),
+    currentWordIndex: 0,
+    currentInput: '',
+    charIndex: 0,
+    totalChars: 0,
+    correctChars: 0,
+    errors: 0,
+    startTime: null,
+    timeLeft: state.timeLimit,
+    running: false,
+    finished: false,
+  };
+  document.getElementById('typingInput').value = '';
+  document.getElementById('timerDisplay').textContent = state.timeLimit;
+  document.getElementById('timerDisplay').classList.remove('warning');
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('liveWpm').textContent = '0';
+  document.getElementById('liveAcc').textContent = '–';
+  document.getElementById('liveErrors').textContent = '0';
+  document.getElementById('startBtn').textContent = 'Start Test ▶';
+  document.getElementById('typingResults').classList.remove('show');
+  document.getElementById('liveWpmBig').classList.remove('show');
+  document.getElementById('typingWords').style.transform = '';
+  renderWords();
+}
+
+function skipWord() {
+  if (!state.running || state.finished) return;
+  state.errors++;
+  state.currentWordIndex++;
+  state.currentInput = '';
+  document.getElementById('typingInput').value = '';
+  renderWords();
+}
+
+function finishTest() {
+  clearInterval(state.timer);
+  state.running = false;
+  state.finished = true;
+
+  const elapsed = (Date.now() - state.startTime) / 1000 / 60;
+  const wpm = elapsed > 0 ? Math.round(state.correctChars / 5 / elapsed) : 0;
+  const acc = state.totalChars > 0 ? Math.round((state.correctChars / state.totalChars) * 100) : 100;
+  const cpm = elapsed > 0 ? Math.round(state.correctChars / elapsed) : 0;
+
+  document.getElementById('finalWpm').textContent = wpm;
+  document.getElementById('finalAcc').textContent = acc + '%';
+  document.getElementById('finalErrors').textContent = state.errors;
+  document.getElementById('finalChars').textContent = cpm;
+
+  // Performance message
+  let msg = '';
+  if (wpm < 20) msg = '🐌 Keep practicing! Consistency is key. Try Easy mode daily.';
+  else if (wpm < 40) msg = '📚 Good start! You\'re building solid habits. Keep it up!';
+  else if (wpm < 60) msg = '👍 Average typist speed. You\'re doing well! Aim for 60+ WPM.';
+  else if (wpm < 80) msg = '⚡ Above average! You\'re faster than most. Great accuracy too!';
+  else if (wpm < 100) msg = '🚀 Excellent! You\'re in the top 10% of typists. Impressive!';
+  else msg = '🏆 Outstanding! You\'re a typing champion! World-class speed!';
+
+  document.getElementById('performanceMsg').innerHTML = `<p style="font-size:0.95rem">${msg}</p><p style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem">Average typist: 40 WPM | Professional: 75 WPM | World record: 212 WPM</p>`;
+
+  document.getElementById('typingResults').classList.add('show');
+  document.getElementById('startBtn').textContent = 'Start Test ▶';
+
+  // Save to local storage
+  const records = JSON.parse(localStorage.getItem('nexora-typing-records') || '[]');
+  records.unshift({ wpm, acc, errors: state.errors, date: new Date().toISOString() });
+  localStorage.setItem('nexora-typing-records', JSON.stringify(records.slice(0, 20)));
+}
+
+// ============================================================
+// INPUT HANDLER
+// ============================================================
+document.getElementById('typingInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Tab') { e.preventDefault(); return; }
+  if (state.finished) return;
+
+  if (!state.running && e.key !== 'Tab') {
+    state.running = true;
+    state.startTime = Date.now();
+    document.getElementById('startBtn').textContent = 'Running...';
+
+    state.timer = setInterval(() => {
+      state.timeLeft--;
+      document.getElementById('timerDisplay').textContent = state.timeLeft;
+      document.getElementById('progressBar').style.width = (state.timeLeft / state.timeLimit * 100) + '%';
+
+      if (state.timeLeft <= 5) {
+        document.getElementById('timerDisplay').classList.add('warning');
+      }
+
+      // Live WPM
+      const elapsed = (Date.now() - state.startTime) / 1000 / 60;
+      const wpm = elapsed > 0 ? Math.round(state.correctChars / 5 / elapsed) : 0;
+      document.getElementById('liveWpm').textContent = wpm;
+      const bigWpm = document.getElementById('liveWpmBig');
+      bigWpm.textContent = wpm + ' WPM';
+      bigWpm.classList.add('show');
+
+      if (state.timeLeft <= 0) finishTest();
+    }, 1000);
+  }
+
+  if (e.key === ' ') {
+    e.preventDefault();
+    if (!state.currentInput.trim()) return;
+
+    const currentWord = state.words[state.currentWordIndex];
+    const typedWord = state.currentInput.trim();
+
+    state.totalChars += currentWord.length;
+    if (typedWord === currentWord) {
+      state.correctChars += currentWord.length;
+    } else {
+      state.errors++;
+      // Count character-level mistakes
+      const minLen = Math.min(typedWord.length, currentWord.length);
+      for (let i = 0; i < minLen; i++) {
+        if (typedWord[i] === currentWord[i]) state.correctChars++;
+      }
+    }
+
+    state.currentWordIndex++;
+    state.currentInput = '';
+    document.getElementById('typingInput').value = '';
+
+    // Update accuracy
+    const acc = state.totalChars > 0 ? Math.round((state.correctChars / state.totalChars) * 100) : 100;
+    document.getElementById('liveAcc').textContent = acc + '%';
+    document.getElementById('liveErrors').textContent = state.errors;
+
+    if (state.currentWordIndex >= state.words.length) finishTest();
+    renderWords();
+  }
+
+  if (e.key === 'Backspace') {
+    state.currentInput = state.currentInput.slice(0, -1);
+    renderWords();
+  }
+});
+
+document.getElementById('typingInput').addEventListener('input', (e) => {
+  if (state.finished) return;
+  const val = e.target.value;
+  if (val.endsWith(' ')) return;
+  state.currentInput = val;
+  renderWords();
+});
+
+// Tab + Enter shortcut
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    // wait for Enter
+    document.addEventListener('keydown', function onEnter(e2) {
+      if (e2.key === 'Enter') { resetTest(); focusInput(); }
+      document.removeEventListener('keydown', onEnter);
+    }, { once: true });
+  }
+});
+
+function shareResult() {
+  const wpm = document.getElementById('finalWpm').textContent;
+  const acc = document.getElementById('finalAcc').textContent;
+  const text = `I just typed ${wpm} WPM with ${acc} accuracy on Nexora Typing Test! 🏆 Try it at nexora.com/typing`;
+  if (navigator.share) {
+    navigator.share({ title: 'My Typing Speed', text });
+  } else {
+    navigator.clipboard.writeText(text).then(() => showToast('Result copied! Share it anywhere 📤'));
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// Init
+ThemeManager && ThemeManager.init && ThemeManager.init();
+HeaderManager && HeaderManager.init && HeaderManager.init();
+resetTest();
+</script>
+</body>
+</html>

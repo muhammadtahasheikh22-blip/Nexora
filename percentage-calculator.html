@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Percentage Calculator – Free Online % Calculator | Nexora</title>
+  <meta name="description" content="Free percentage calculator. Calculate what percent of a number is, percentage increase/decrease, percentage difference, and more. No signup needed." />
+  <meta name="keywords" content="percentage calculator, percent calculator, percentage increase calculator, percentage difference, what percent is" />
+  <meta property="og:title" content="Percentage Calculator – Nexora" />
+  <meta property="og:description" content="Multiple percentage calculation modes in one free tool." />
+  <link rel="canonical" href="https://nexora.com/tools/percentage-calculator" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb">
+      <a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Percentage Calculator
+    </div>
+    <h1 class="tool-hero-title">% Percentage Calculator</h1>
+    <p class="tool-hero-sub">Six different percentage calculations in one free, easy-to-use tool.</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+
+    <!-- Mode 1: X% of Y -->
+    <div class="tool-card perc-card">
+      <div class="perc-mode-tag">Mode 1</div>
+      <h2>What is <span class="perc-highlight">X%</span> of <span class="perc-highlight">Y</span>?</h2>
+      <p class="perc-desc">e.g. What is 20% of 500?</p>
+      <div class="perc-input-row">
+        <input type="number" id="m1x" class="tool-input perc-input" placeholder="X (percent)" />
+        <span class="perc-of">% of</span>
+        <input type="number" id="m1y" class="tool-input perc-input" placeholder="Y (number)" />
+        <button class="btn btn-primary" onclick="calcMode1()">Calculate</button>
+      </div>
+      <div class="perc-result" id="r1"></div>
+    </div>
+
+    <!-- Mode 2: X is what % of Y -->
+    <div class="tool-card perc-card">
+      <div class="perc-mode-tag">Mode 2</div>
+      <h2><span class="perc-highlight">X</span> is what % of <span class="perc-highlight">Y</span>?</h2>
+      <p class="perc-desc">e.g. 50 is what % of 200?</p>
+      <div class="perc-input-row">
+        <input type="number" id="m2x" class="tool-input perc-input" placeholder="X" />
+        <span class="perc-of">is what % of</span>
+        <input type="number" id="m2y" class="tool-input perc-input" placeholder="Y" />
+        <button class="btn btn-primary" onclick="calcMode2()">Calculate</button>
+      </div>
+      <div class="perc-result" id="r2"></div>
+    </div>
+
+    <!-- Mode 3: Percentage Increase/Decrease -->
+    <div class="tool-card perc-card">
+      <div class="perc-mode-tag">Mode 3</div>
+      <h2>Percentage <span class="perc-highlight">Increase / Decrease</span></h2>
+      <p class="perc-desc">e.g. From 100 to 150 → 50% increase</p>
+      <div class="perc-input-row">
+        <input type="number" id="m3from" class="tool-input perc-input" placeholder="From" />
+        <span class="perc-of">→</span>
+        <input type="number" id="m3to" class="tool-input perc-input" placeholder="To" />
+        <button class="btn btn-primary" onclick="calcMode3()">Calculate</button>
+      </div>
+      <div class="perc-result" id="r3"></div>
+    </div>
+
+    <!-- Mode 4: Add % to number -->
+    <div class="tool-card perc-card">
+      <div class="perc-mode-tag">Mode 4</div>
+      <h2>Add/Subtract <span class="perc-highlight">X%</span> to/from <span class="perc-highlight">Y</span></h2>
+      <p class="perc-desc">e.g. 500 + 18% GST = 590</p>
+      <div class="perc-input-row">
+        <input type="number" id="m4y" class="tool-input perc-input" placeholder="Number (Y)" />
+        <span class="perc-of">±</span>
+        <input type="number" id="m4x" class="tool-input perc-input" placeholder="%" />
+        <button class="btn btn-primary" onclick="calcMode4()">Calculate</button>
+      </div>
+      <div class="perc-result" id="r4"></div>
+    </div>
+
+    <!-- Mode 5: Percentage difference -->
+    <div class="tool-card perc-card">
+      <div class="perc-mode-tag">Mode 5</div>
+      <h2>Percentage <span class="perc-highlight">Difference</span></h2>
+      <p class="perc-desc">Difference between two values as a percentage</p>
+      <div class="perc-input-row">
+        <input type="number" id="m5a" class="tool-input perc-input" placeholder="Value A" />
+        <span class="perc-of">and</span>
+        <input type="number" id="m5b" class="tool-input perc-input" placeholder="Value B" />
+        <button class="btn btn-primary" onclick="calcMode5()">Calculate</button>
+      </div>
+      <div class="perc-result" id="r5"></div>
+    </div>
+
+    <!-- Mode 6: Reverse percentage -->
+    <div class="tool-card perc-card">
+      <div class="perc-mode-tag">Mode 6</div>
+      <h2><span class="perc-highlight">Y</span> is X% of what number?</h2>
+      <p class="perc-desc">e.g. 60 is 30% of what? → 200</p>
+      <div class="perc-input-row">
+        <input type="number" id="m6y" class="tool-input perc-input" placeholder="Y (result)" />
+        <span class="perc-of">is</span>
+        <input type="number" id="m6x" class="tool-input perc-input" placeholder="X %" />
+        <span class="perc-of">% of what?</span>
+        <button class="btn btn-primary" onclick="calcMode6()">Calculate</button>
+      </div>
+      <div class="perc-result" id="r6"></div>
+    </div>
+
+    <!-- History -->
+    <div class="tool-card" id="historyCard" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+        <h2>📜 Calculation History</h2>
+        <button class="btn btn-ghost btn-sm" onclick="clearHistory()">Clear</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="tool-card faq-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How do I calculate percentage increase?</button>
+          <div class="faq-a">To calculate percentage increase: ((New Value - Old Value) / Old Value) × 100. For example, if a price goes from 100 to 120, the increase is ((120-100)/100) × 100 = 20%.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the formula for percentage?</button>
+          <div class="faq-a">The basic percentage formula is: Percentage = (Part / Whole) × 100. For example, if you scored 45 out of 60, your percentage is (45/60) × 100 = 75%.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How to calculate percentage discount?</button>
+          <div class="faq-a">Use Mode 3 (Percentage Increase/Decrease). Enter the original price as "From" and the sale price as "To". The tool will show you the exact discount percentage.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-sidebar">
+    <div class="tool-card">
+      <h3>📝 Formula Reference</h3>
+      <div class="formula-list">
+        <div class="formula-item"><strong>X% of Y</strong> = (X/100) × Y</div>
+        <div class="formula-item"><strong>X is ?% of Y</strong> = (X/Y) × 100</div>
+        <div class="formula-item"><strong>% Change</strong> = ((New-Old)/Old) × 100</div>
+        <div class="formula-item"><strong>% Diff</strong> = |A-B|/((A+B)/2) × 100</div>
+      </div>
+    </div>
+    <div class="tool-card">
+      <h3>🔧 More Tools</h3>
+      <div class="sidebar-tool-links">
+        <a href="bmi-calculator.html" class="sidebar-tool-link">⚖️ BMI Calculator</a>
+        <a href="age-calculator.html" class="sidebar-tool-link">🎂 Age Calculator</a>
+        <a href="word-counter.html" class="sidebar-tool-link">📝 Word Counter</a>
+        <a href="password-generator.html" class="sidebar-tool-link">🔐 Password Generator</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<style>
+.perc-card { margin-bottom:0; }
+.perc-mode-tag { display:inline-block; background:var(--purple); color:#fff; font-size:0.72rem; font-weight:700; padding:0.2rem 0.6rem; border-radius:99px; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.05em; }
+.perc-highlight { color:var(--purple); }
+.perc-desc { color:var(--text3); font-size:0.85rem; margin-bottom:1rem; }
+.perc-input-row { display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; }
+.perc-input { width:130px; flex-shrink:0; }
+.perc-of { color:var(--text2); font-size:0.9rem; white-space:nowrap; }
+.perc-result { margin-top:1rem; padding:1rem; background:var(--bg3); border-radius:var(--radius-sm); border-left:3px solid var(--green); display:none; font-size:1.1rem; font-weight:600; }
+.perc-result.show { display:block; }
+.history-list { display:flex; flex-direction:column; gap:0.4rem; }
+.history-item { padding:0.6rem 0.75rem; background:var(--bg3); border-radius:var(--radius-sm); font-size:0.85rem; color:var(--text2); }
+.formula-list { display:flex; flex-direction:column; gap:0.5rem; margin-top:0.75rem; }
+.formula-item { padding:0.5rem 0.75rem; background:var(--bg3); border-radius:var(--radius-sm); font-size:0.8rem; font-family:monospace; color:var(--text2); }
+.sidebar-tool-links { display:flex; flex-direction:column; gap:0.4rem; margin-top:0.75rem; }
+.sidebar-tool-link { padding:0.5rem 0.75rem; background:var(--bg3); border-radius:var(--radius-sm); font-size:0.85rem; transition:all var(--transition); color:var(--text2); }
+.sidebar-tool-link:hover { background:rgba(108,99,255,0.1); color:var(--purple); }
+</style>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('theme', n);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+});
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+
+let history = [];
+
+function fmt(n) { return parseFloat(n.toFixed(4)).toLocaleString(); }
+
+function showResult(id, html) {
+  const el = document.getElementById(id);
+  el.innerHTML = html; el.classList.add('show');
+}
+
+function addHistory(text) {
+  history.unshift(text);
+  if (history.length > 10) history.pop();
+  const card = document.getElementById('historyCard');
+  card.style.display = 'block';
+  document.getElementById('historyList').innerHTML = history.map(h => `<div class="history-item">${h}</div>`).join('');
+}
+
+function calcMode1() {
+  const x = parseFloat(document.getElementById('m1x').value);
+  const y = parseFloat(document.getElementById('m1y').value);
+  if (isNaN(x) || isNaN(y)) { showToast('Please enter valid numbers'); return; }
+  const res = (x / 100) * y;
+  const html = `${x}% of ${y} = <span style="color:var(--green)">${fmt(res)}</span>`;
+  showResult('r1', html); addHistory(html);
+}
+function calcMode2() {
+  const x = parseFloat(document.getElementById('m2x').value);
+  const y = parseFloat(document.getElementById('m2y').value);
+  if (isNaN(x) || isNaN(y) || y === 0) { showToast('Please enter valid numbers'); return; }
+  const res = (x / y) * 100;
+  const html = `${x} is <span style="color:var(--green)">${fmt(res)}%</span> of ${y}`;
+  showResult('r2', html); addHistory(html);
+}
+function calcMode3() {
+  const from = parseFloat(document.getElementById('m3from').value);
+  const to = parseFloat(document.getElementById('m3to').value);
+  if (isNaN(from) || isNaN(to) || from === 0) { showToast('Please enter valid numbers'); return; }
+  const res = ((to - from) / Math.abs(from)) * 100;
+  const dir = res >= 0 ? '📈 Increase' : '📉 Decrease';
+  const html = `${dir}: <span style="color:var(--green)">${fmt(Math.abs(res))}%</span> (from ${from} to ${to})`;
+  showResult('r3', html); addHistory(html);
+}
+function calcMode4() {
+  const y = parseFloat(document.getElementById('m4y').value);
+  const x = parseFloat(document.getElementById('m4x').value);
+  if (isNaN(y) || isNaN(x)) { showToast('Please enter valid numbers'); return; }
+  const added = y + (y * x / 100);
+  const subtracted = y - (y * x / 100);
+  const html = `${y} + ${x}% = <span style="color:var(--green)">${fmt(added)}</span><br>${y} − ${x}% = <span style="color:#ff6b6b">${fmt(subtracted)}</span>`;
+  showResult('r4', html); addHistory(`${y} ± ${x}%`);
+}
+function calcMode5() {
+  const a = parseFloat(document.getElementById('m5a').value);
+  const b = parseFloat(document.getElementById('m5b').value);
+  if (isNaN(a) || isNaN(b)) { showToast('Please enter valid numbers'); return; }
+  const res = (Math.abs(a - b) / ((a + b) / 2)) * 100;
+  const html = `Percentage difference between ${a} and ${b}: <span style="color:var(--green)">${fmt(res)}%</span>`;
+  showResult('r5', html); addHistory(html);
+}
+function calcMode6() {
+  const y = parseFloat(document.getElementById('m6y').value);
+  const x = parseFloat(document.getElementById('m6x').value);
+  if (isNaN(y) || isNaN(x) || x === 0) { showToast('Please enter valid numbers'); return; }
+  const res = (y / x) * 100;
+  const html = `${y} is ${x}% of <span style="color:var(--green)">${fmt(res)}</span>`;
+  showResult('r6', html); addHistory(html);
+}
+function clearHistory() { history = []; document.getElementById('historyCard').style.display = 'none'; }
+function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>

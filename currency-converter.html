@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currency Converter – Free Live Exchange Rates | Nexora</title>
+  <meta name="description" content="Free online currency converter with live exchange rates. Convert between 150+ currencies including USD, EUR, GBP, PKR, INR, AED and more." />
+  <meta name="keywords" content="currency converter, exchange rate, USD to PKR, dollar to rupee, live exchange rates, forex converter" />
+  <meta property="og:title" content="Currency Converter – Live Rates | Nexora" />
+  <meta property="og:description" content="Convert between 150+ world currencies with live exchange rates. Free online tool." />
+  <link rel="canonical" href="https://nexora.com/tools/currency-converter" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb">
+      <a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Currency Converter
+    </div>
+    <h1 class="tool-hero-title">💱 Currency Converter</h1>
+    <p class="tool-hero-sub">Convert between 150+ world currencies with live exchange rates.</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+
+    <!-- Live Rate Badge -->
+    <div class="tool-card" style="background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(0,255,135,0.05));border-color:var(--purple);">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div class="live-dot"></div>
+          <span style="font-weight:600;">Live Exchange Rates</span>
+          <span id="rateSource" style="font-size:0.8rem;color:var(--text3);">Loading...</span>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="loadRates()">🔄 Refresh Rates</button>
+      </div>
+    </div>
+
+    <!-- Main Converter -->
+    <div class="tool-card">
+      <div class="cc-converter">
+        <!-- From -->
+        <div class="cc-side">
+          <label>Amount</label>
+          <input type="number" id="fromAmount" class="tool-input cc-amount" value="1" oninput="convertCurrency()" />
+          <label style="margin-top:1rem;">From Currency</label>
+          <select id="fromCurrency" class="tool-input cc-select" onchange="convertCurrency()"></select>
+        </div>
+
+        <!-- Swap -->
+        <button class="cc-swap-btn" onclick="swapCurrencies()" title="Swap currencies">⇄</button>
+
+        <!-- To -->
+        <div class="cc-side">
+          <label>Converted Amount</label>
+          <div class="cc-result-display" id="toAmount">—</div>
+          <label style="margin-top:1rem;">To Currency</label>
+          <select id="toCurrency" class="tool-input cc-select" onchange="convertCurrency()"></select>
+        </div>
+      </div>
+
+      <!-- Rate Info -->
+      <div id="rateInfo" class="cc-rate-info" style="display:none;">
+        <div id="rateText"></div>
+        <div id="inverseRate" style="color:var(--text3);font-size:0.85rem;margin-top:0.25rem;"></div>
+      </div>
+
+      <div style="display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap;">
+        <button class="btn btn-ghost btn-sm" onclick="copyResult()">📋 Copy Result</button>
+        <button class="btn btn-ghost btn-sm" onclick="shareRate()">📤 Share</button>
+      </div>
+    </div>
+
+    <!-- Quick Amounts -->
+    <div class="tool-card">
+      <h3 style="margin-bottom:1rem;">⚡ Quick Convert</h3>
+      <div class="quick-amounts">
+        <button class="quick-btn" onclick="setAmount(1)">1</button>
+        <button class="quick-btn" onclick="setAmount(5)">5</button>
+        <button class="quick-btn" onclick="setAmount(10)">10</button>
+        <button class="quick-btn" onclick="setAmount(50)">50</button>
+        <button class="quick-btn" onclick="setAmount(100)">100</button>
+        <button class="quick-btn" onclick="setAmount(500)">500</button>
+        <button class="quick-btn" onclick="setAmount(1000)">1,000</button>
+        <button class="quick-btn" onclick="setAmount(5000)">5,000</button>
+        <button class="quick-btn" onclick="setAmount(10000)">10,000</button>
+      </div>
+    </div>
+
+    <!-- Conversion Table -->
+    <div class="tool-card" id="convTable">
+      <h3 style="margin-bottom:1rem;">📊 Conversion Table (1 <span id="tableFromLabel">USD</span>)</h3>
+      <div class="cc-table-wrapper">
+        <table class="cc-table" id="conversionTable">
+          <thead><tr><th>Currency</th><th>Code</th><th>Rate</th><th>1,000 Units</th></tr></thead>
+          <tbody id="conversionTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Popular Pairs -->
+    <div class="tool-card">
+      <h3 style="margin-bottom:1rem;">🌍 Popular Currency Pairs</h3>
+      <div class="popular-pairs" id="popularPairs"></div>
+    </div>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot" style="display:none;"></div>
+
+    <!-- FAQ -->
+    <div class="tool-card faq-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How accurate are the exchange rates?</button>
+          <div class="faq-a">Our rates are fetched from the Open Exchange Rates API and are updated in real-time. The rates are indicative and may differ slightly from bank rates or the rates offered by money transfer services. For financial transactions, always verify with your bank.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What currencies are supported?</button>
+          <div class="faq-a">Nexora's currency converter supports 150+ world currencies including all major currencies (USD, EUR, GBP, JPY, CAD, AUD, CHF) as well as regional currencies like PKR (Pakistani Rupee), INR (Indian Rupee), AED (UAE Dirham), SAR (Saudi Riyal), and many more.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How often are rates updated?</button>
+          <div class="faq-a">Exchange rates are updated every hour. Click the "Refresh Rates" button to get the latest rates. Note that currency markets are closed on weekends, so Friday's closing rates are used on Saturdays and Sundays.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is PKR to USD today?</button>
+          <div class="faq-a">The current PKR to USD rate is displayed live in our converter above. Select PKR as the "From" currency and USD as the "To" currency to see the latest rate.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="tool-sidebar">
+    <div class="tool-card">
+      <h3>📌 Pinned Rates</h3>
+      <div id="pinnedRates" style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.5rem;">
+        <div style="font-size:0.85rem;color:var(--text3);">Loading live rates...</div>
+      </div>
+    </div>
+    <div class="tool-card">
+      <h3>🔧 More Tools</h3>
+      <div class="sidebar-tool-links">
+        <a href="percentage-calculator.html" class="sidebar-tool-link">% Percentage Calc</a>
+        <a href="bmi-calculator.html" class="sidebar-tool-link">⚖️ BMI Calculator</a>
+        <a href="age-calculator.html" class="sidebar-tool-link">🎂 Age Calculator</a>
+        <a href="password-generator.html" class="sidebar-tool-link">🔐 Password Generator</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<style>
+.live-dot { width:10px; height:10px; background:var(--green); border-radius:50%; animation:pulse 2s infinite; flex-shrink:0; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.2)} }
+.cc-converter { display:grid; grid-template-columns:1fr auto 1fr; gap:1.5rem; align-items:end; }
+@media(max-width:600px){ .cc-converter { grid-template-columns:1fr; } }
+.cc-side { display:flex; flex-direction:column; }
+.cc-side label { font-size:0.85rem; font-weight:600; color:var(--text2); margin-bottom:0.35rem; }
+.cc-amount { font-size:1.5rem; font-weight:700; height:56px; }
+.cc-select { height:48px; margin-top:0; }
+.cc-result-display { height:56px; background:var(--bg3); border:1px solid var(--green); border-radius:var(--radius-sm); padding:0 1rem; display:flex; align-items:center; font-size:1.5rem; font-weight:700; color:var(--green); overflow:hidden; }
+.cc-swap-btn { width:48px; height:48px; background:var(--bg3); border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2rem; cursor:pointer; transition:all var(--transition); color:var(--purple); align-self:center; margin-bottom:0; }
+@media(max-width:600px){ .cc-swap-btn { transform:rotate(90deg); } }
+.cc-swap-btn:hover { background:var(--purple); color:#fff; border-color:var(--purple); }
+.cc-rate-info { margin-top:1.25rem; padding:1rem; background:var(--bg3); border-radius:var(--radius-sm); border-left:3px solid var(--purple); font-weight:600; }
+.quick-amounts { display:flex; flex-wrap:wrap; gap:0.5rem; }
+.quick-btn { padding:0.4rem 0.9rem; background:var(--bg3); border:1px solid var(--border); border-radius:99px; font-size:0.85rem; cursor:pointer; color:var(--text2); transition:all var(--transition); font-family:var(--font-body); }
+.quick-btn:hover { border-color:var(--purple); color:var(--purple); background:rgba(108,99,255,0.1); }
+.cc-table-wrapper { overflow-x:auto; }
+.cc-table { width:100%; border-collapse:collapse; font-size:0.9rem; }
+.cc-table th { background:var(--bg3); padding:0.6rem 0.75rem; text-align:left; font-size:0.8rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; }
+.cc-table td { padding:0.6rem 0.75rem; border-bottom:1px solid var(--border); color:var(--text2); }
+.cc-table tr:last-child td { border-bottom:none; }
+.cc-table tr:hover td { background:rgba(108,99,255,0.05); }
+.popular-pairs { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:0.75rem; }
+.pair-card { padding:0.75rem; background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius-sm); cursor:pointer; transition:all var(--transition); }
+.pair-card:hover { border-color:var(--purple); }
+.pair-code { font-weight:700; font-size:0.95rem; color:var(--text); }
+.pair-rate { font-size:0.8rem; color:var(--green); margin-top:0.2rem; }
+.pair-name { font-size:0.72rem; color:var(--text3); }
+.pinned-rate-item { display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0.75rem; background:var(--bg3); border-radius:var(--radius-sm); font-size:0.85rem; }
+.pinned-rate-code { font-weight:700; color:var(--text); }
+.pinned-rate-val { color:var(--green); font-weight:600; }
+.sidebar-tool-links { display:flex; flex-direction:column; gap:0.4rem; margin-top:0.75rem; }
+.sidebar-tool-link { padding:0.5rem 0.75rem; background:var(--bg3); border-radius:var(--radius-sm); font-size:0.85rem; transition:all var(--transition); color:var(--text2); }
+.sidebar-tool-link:hover { background:rgba(108,99,255,0.1); color:var(--purple); }
+</style>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('theme', n);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+});
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+
+// Currency data
+const CURRENCIES = {
+  USD:{name:'US Dollar',flag:'🇺🇸'},EUR:{name:'Euro',flag:'🇪🇺'},GBP:{name:'British Pound',flag:'🇬🇧'},
+  JPY:{name:'Japanese Yen',flag:'🇯🇵'},CAD:{name:'Canadian Dollar',flag:'🇨🇦'},AUD:{name:'Australian Dollar',flag:'🇦🇺'},
+  CHF:{name:'Swiss Franc',flag:'🇨🇭'},CNY:{name:'Chinese Yuan',flag:'🇨🇳'},HKD:{name:'Hong Kong Dollar',flag:'🇭🇰'},
+  SGD:{name:'Singapore Dollar',flag:'🇸🇬'},PKR:{name:'Pakistani Rupee',flag:'🇵🇰'},INR:{name:'Indian Rupee',flag:'🇮🇳'},
+  AED:{name:'UAE Dirham',flag:'🇦🇪'},SAR:{name:'Saudi Riyal',flag:'🇸🇦'},BDT:{name:'Bangladeshi Taka',flag:'🇧🇩'},
+  MYR:{name:'Malaysian Ringgit',flag:'🇲🇾'},IDR:{name:'Indonesian Rupiah',flag:'🇮🇩'},THB:{name:'Thai Baht',flag:'🇹🇭'},
+  TRY:{name:'Turkish Lira',flag:'🇹🇷'},BRL:{name:'Brazilian Real',flag:'🇧🇷'},MXN:{name:'Mexican Peso',flag:'🇲🇽'},
+  ZAR:{name:'South African Rand',flag:'🇿🇦'},NGN:{name:'Nigerian Naira',flag:'🇳🇬'},EGP:{name:'Egyptian Pound',flag:'🇪🇬'},
+  KWD:{name:'Kuwaiti Dinar',flag:'🇰🇼'},QAR:{name:'Qatari Riyal',flag:'🇶🇦'},OMR:{name:'Omani Rial',flag:'🇴🇲'},
+  NOK:{name:'Norwegian Krone',flag:'🇳🇴'},SEK:{name:'Swedish Krona',flag:'🇸🇪'},DKK:{name:'Danish Krone',flag:'🇩🇰'},
+  NZD:{name:'New Zealand Dollar',flag:'🇳🇿'},KRW:{name:'South Korean Won',flag:'🇰🇷'},TWD:{name:'Taiwan Dollar',flag:'🇹🇼'},
+  PHP:{name:'Philippine Peso',flag:'🇵🇭'},VND:{name:'Vietnamese Dong',flag:'🇻🇳'},IQD:{name:'Iraqi Dinar',flag:'🇮🇶'},
+};
+
+// Fallback rates (USD base) – updated periodically
+const FALLBACK_RATES = {
+  USD:1,EUR:0.92,GBP:0.79,JPY:149.5,CAD:1.36,AUD:1.53,CHF:0.89,CNY:7.24,HKD:7.82,SGD:1.34,
+  PKR:278.5,INR:83.1,AED:3.67,SAR:3.75,BDT:110.2,MYR:4.71,IDR:15685,THB:35.1,TRY:32.1,BRL:4.97,
+  MXN:17.15,ZAR:18.63,NGN:1540,EGP:48.7,KWD:0.307,QAR:3.64,OMR:0.385,NOK:10.55,SEK:10.42,
+  DKK:6.89,NZD:1.63,KRW:1325,TWD:32.1,PHP:56.1,VND:24580,IQD:1309
+};
+
+let rates = {...FALLBACK_RATES};
+let ratesLoaded = false;
+
+// Populate selects
+function populateSelects() {
+  const fromSel = document.getElementById('fromCurrency');
+  const toSel = document.getElementById('toCurrency');
+  Object.entries(CURRENCIES).forEach(([code, {name, flag}]) => {
+    const opt1 = new Option(`${flag} ${code} – ${name}`, code);
+    const opt2 = new Option(`${flag} ${code} – ${name}`, code);
+    fromSel.add(opt1); toSel.add(opt2);
+  });
+  fromSel.value = 'USD';
+  toSel.value = 'PKR';
+}
+
+async function loadRates() {
+  document.getElementById('rateSource').textContent = 'Fetching rates...';
+  try {
+    // Using free open.er-api.com (no key required for basic usage)
+    const res = await fetch('https://open.er-api.com/v6/latest/USD');
+    if (!res.ok) throw new Error('Network error');
+    const data = await res.json();
+    if (data.rates) {
+      rates = data.rates;
+      ratesLoaded = true;
+      const updated = new Date(data.time_last_update_utc);
+      document.getElementById('rateSource').textContent = `Updated: ${updated.toLocaleTimeString()}`;
+    }
+  } catch(e) {
+    rates = {...FALLBACK_RATES};
+    document.getElementById('rateSource').textContent = 'Using cached rates';
+  }
+  convertCurrency();
+  buildPopularPairs();
+  buildPinnedRates();
+  buildConversionTable();
+}
+
+function convertCurrency() {
+  const amount = parseFloat(document.getElementById('fromAmount').value) || 0;
+  const from = document.getElementById('fromCurrency').value;
+  const to = document.getElementById('toCurrency').value;
+  if (!rates[from] || !rates[to]) return;
+
+  const inUSD = amount / rates[from];
+  const result = inUSD * rates[to];
+  const rate = rates[to] / rates[from];
+  const inverseRate = rates[from] / rates[to];
+
+  document.getElementById('toAmount').textContent = result.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:4});
+  document.getElementById('rateInfo').style.display = 'block';
+  document.getElementById('rateText').innerHTML = `<span style="color:var(--purple)">1 ${from}</span> = <span style="color:var(--green)">${rate.toFixed(4)} ${to}</span>`;
+  document.getElementById('inverseRate').textContent = `1 ${to} = ${inverseRate.toFixed(6)} ${from}`;
+  document.getElementById('tableFromLabel').textContent = from;
+  buildConversionTable();
+}
+
+function swapCurrencies() {
+  const from = document.getElementById('fromCurrency');
+  const to = document.getElementById('toCurrency');
+  const tmp = from.value; from.value = to.value; to.value = tmp;
+  convertCurrency();
+}
+
+function setAmount(n) {
+  document.getElementById('fromAmount').value = n;
+  convertCurrency();
+}
+
+function buildConversionTable() {
+  const from = document.getElementById('fromCurrency').value;
+  const amount = parseFloat(document.getElementById('fromAmount').value) || 1;
+  const tableBody = document.getElementById('conversionTableBody');
+  const popularCodes = ['USD','EUR','GBP','PKR','INR','AED','SAR','JPY','CAD','AUD','CHF','CNY'];
+  const inUSD = amount / rates[from];
+  tableBody.innerHTML = popularCodes.filter(c => c !== from).map(code => {
+    const val = (inUSD * rates[code]);
+    const val1k = (inUSD * rates[code] * 1000);
+    const {name, flag} = CURRENCIES[code] || {name:code, flag:'💱'};
+    return `<tr>
+      <td>${flag} ${name}</td>
+      <td><strong>${code}</strong></td>
+      <td style="color:var(--green);font-weight:600;">${val.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:4})}</td>
+      <td style="color:var(--text2);">${val1k.toLocaleString(undefined,{maximumFractionDigits:2})}</td>
+    </tr>`;
+  }).join('');
+}
+
+function buildPopularPairs() {
+  const pairs = [['USD','PKR'],['USD','EUR'],['USD','GBP'],['USD','INR'],['USD','AED'],['EUR','GBP'],['GBP','PKR'],['USD','SAR'],['USD','JPY']];
+  document.getElementById('popularPairs').innerHTML = pairs.map(([f,t]) => {
+    const rate = rates[t] / rates[f];
+    return `<div class="pair-card" onclick="setPair('${f}','${t}')">
+      <div class="pair-code">${f} → ${t}</div>
+      <div class="pair-rate">${rate.toFixed(4)}</div>
+      <div class="pair-name">${CURRENCIES[f]?.flag||''} ${CURRENCIES[t]?.flag||''}</div>
+    </div>`;
+  }).join('');
+}
+
+function buildPinnedRates() {
+  const pinned = ['EUR','GBP','PKR','INR','AED','SAR','JPY','CAD'];
+  document.getElementById('pinnedRates').innerHTML = pinned.map(code => {
+    const rate = rates[code] || '—';
+    const {flag} = CURRENCIES[code] || {flag:'💱'};
+    return `<div class="pinned-rate-item"><span class="pinned-rate-code">${flag} ${code}</span><span class="pinned-rate-val">${typeof rate === 'number' ? rate.toFixed(3) : rate}</span></div>`;
+  }).join('');
+}
+
+function setPair(from, to) {
+  document.getElementById('fromCurrency').value = from;
+  document.getElementById('toCurrency').value = to;
+  convertCurrency();
+  window.scrollTo({ top: 300, behavior:'smooth' });
+}
+
+function copyResult() {
+  const result = document.getElementById('toAmount').textContent;
+  const to = document.getElementById('toCurrency').value;
+  navigator.clipboard.writeText(result + ' ' + to).then(() => showToast('✅ Copied!'));
+}
+
+function shareRate() {
+  const from = document.getElementById('fromCurrency').value;
+  const to = document.getElementById('toCurrency').value;
+  const amount = document.getElementById('fromAmount').value;
+  const result = document.getElementById('toAmount').textContent;
+  const text = `${amount} ${from} = ${result} ${to} | Check live rates at nexora.com`;
+  if (navigator.share) {
+    navigator.share({ title:'Currency Converter', text, url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(text).then(() => showToast('✅ Copied to clipboard!'));
+  }
+}
+
+function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// Init
+populateSelects();
+loadRates();
+</script>
+</body>
+</html>

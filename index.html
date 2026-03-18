@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexora – Your All-in-One Smart Toolkit | Free Online Tools</title>
+  <meta name="description" content="Nexora offers 20+ free online tools including Word Counter, Image Compressor, PDF tools, Calculator, Typing Speed Test and more. No signup required." />
+  <meta name="keywords" content="online tools, word counter, image compressor, pdf tools, typing test, free tools, nexora" />
+  <meta name="author" content="Nexora" />
+  <meta property="og:title" content="Nexora – Your All-in-One Smart Toolkit" />
+  <meta property="og:description" content="20+ free online tools. Word Counter, Image Compressor, PDF Tools, Typing Test and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nexora.com" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nexora.com" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- AdSense (replace with your publisher ID) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Nexora",
+    "url": "https://nexora.com",
+    "description": "Your All-in-One Smart Toolkit",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://nexora.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">N</span>
+      <span class="logo-text">Nexora</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="#tools" class="nav-link">Tools</a>
+      <a href="typing.html" class="nav-link">Typing</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle Dark/Light Mode">
+        <span class="theme-icon">☀️</span>
+      </button>
+      <a href="#" class="btn btn-ghost" id="loginBtn">Login</a>
+      <a href="#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-badge">✦ 20+ Free Tools Available</div>
+    <h1 class="hero-title">
+      Your All-in-One<br />
+      <span class="gradient-text">Smart Toolkit</span>
+    </h1>
+    <p class="hero-sub">Word Counter, Image Compressor, PDF Tools, Typing Tests & more — all free, no signup needed.</p>
+    <div class="search-bar-wrap">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="heroSearch" placeholder="Search tools... (e.g. Word Counter, BMI)" autocomplete="off" />
+        <button class="search-btn" onclick="handleSearch()">Search</button>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-pill"><span id="liveCount">12,483</span> tools used today</div>
+      <div class="stat-pill">⚡ No signup required</div>
+      <div class="stat-pill">🌍 Works worldwide</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== QUICK ACCESS BAR ========== -->
+<section class="quick-access">
+  <div class="container">
+    <p class="section-label">⚡ Quick Access</p>
+    <div class="quick-tools">
+      <a href="tools/word-counter.html" class="quick-tool">
+        <span class="qt-icon">📝</span>
+        <span>Word Counter</span>
+      </a>
+      <a href="tools/image-compressor.html" class="quick-tool">
+        <span class="qt-icon">🖼️</span>
+        <span>Image Compressor</span>
+      </a>
+      <a href="tools/bmi-calculator.html" class="quick-tool">
+        <span class="qt-icon">⚖️</span>
+        <span>BMI Calculator</span>
+      </a>
+      <a href="tools/qr-generator.html" class="quick-tool">
+        <span class="qt-icon">📲</span>
+        <span>QR Generator</span>
+      </a>
+      <a href="typing.html" class="quick-tool">
+        <span class="qt-icon">⌨️</span>
+        <span>Typing Test</span>
+      </a>
+      <a href="tools/password-generator.html" class="quick-tool">
+        <span class="qt-icon">🔐</span>
+        <span>Password Gen</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DAILY CHALLENGE ========== -->
+<section class="daily-challenge">
+  <div class="container">
+    <div class="challenge-card">
+      <div class="challenge-left">
+        <div class="challenge-badge">🔥 Daily Challenge</div>
+        <h2>Today's Typing Sprint</h2>
+        <p>Type 50 words in under 1 minute to earn <strong>20 bonus points!</strong></p>
+        <div class="challenge-meta">
+          <span>⏱ Resets in: <strong id="challengeTimer">08:42:17</strong></span>
+          <span>👥 <strong>2,341</strong> completed today</span>
+        </div>
+        <a href="typing.html" class="btn btn-accent">Start Challenge →</a>
+      </div>
+      <div class="challenge-right">
+        <div class="challenge-visual">
+          <div class="wpm-ring">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(108,99,255,0.2)" stroke-width="8"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#6C63FF" stroke-width="8" stroke-dasharray="314" stroke-dashoffset="100" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <div class="wpm-label"><span>75</span>WPM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AD BANNER TOP ========== -->
+<div class="container ad-slot">
+  <div class="ad-placeholder">
+    <!-- Google AdSense Banner 728x90 -->
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX" data-ad-format="auto"></ins> -->
+    <span>Advertisement</span>
+  </div>
+</div>
+
+<!-- ========== FREE TOOLS GRID ========== -->
+<section class="tools-section" id="tools">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">🛠 Free Tools</p>
+      <h2 class="section-title">Everything You Need, <span class="gradient-text">Free Forever</span></h2>
+      <p class="section-sub">No signup, no limits. Just pick your tool and get started.</p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button class="cat-btn active" onclick="filterTools('all')">All Tools</button>
+      <button class="cat-btn" onclick="filterTools('text')">📝 Text</button>
+      <button class="cat-btn" onclick="filterTools('image')">🖼️ Image</button>
+      <button class="cat-btn" onclick="filterTools('pdf')">📄 PDF</button>
+      <button class="cat-btn" onclick="filterTools('calc')">🧮 Calculator</button>
+      <button class="cat-btn" onclick="filterTools('seo')">📊 SEO</button>
+    </div>
+
+    <div class="tools-grid" id="toolsGrid">
+
+      <!-- TEXT TOOLS -->
+      <a href="tools/word-counter.html" class="tool-card" data-cat="text">
+        <div class="tool-icon-wrap purple"><span>📝</span></div>
+        <div class="tool-info">
+          <h3>Word Counter</h3>
+          <p>Live count + reading time + character count</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="tools/case-converter.html" class="tool-card" data-cat="text">
+        <div class="tool-icon-wrap blue"><span>🔤</span></div>
+        <div class="tool-info">
+          <h3>Case Converter</h3>
+          <p>UPPER, lower, Title & Sentence case</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="tools/text-to-speech.html" class="tool-card" data-cat="text">
+        <div class="tool-icon-wrap green"><span>🔊</span></div>
+        <div class="tool-info">
+          <h3>Text to Speech</h3>
+          <p>Multiple voices & languages</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="text">
+        <div class="tool-icon-wrap orange"><span>🔍</span></div>
+        <div class="tool-info">
+          <h3>Grammar Checker</h3>
+          <p>Basic grammar suggestions</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="text">
+        <div class="tool-icon-wrap pink"><span>🕵️</span></div>
+        <div class="tool-info">
+          <h3>Plagiarism Checker</h3>
+          <p>Basic duplicate content check</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <!-- IMAGE TOOLS -->
+      <a href="tools/image-compressor.html" class="tool-card" data-cat="image">
+        <div class="tool-icon-wrap blue"><span>🖼️</span></div>
+        <div class="tool-info">
+          <h3>Image Compressor</h3>
+          <p>Drag & drop, bulk upload support</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="image">
+        <div class="tool-icon-wrap purple"><span>📐</span></div>
+        <div class="tool-info">
+          <h3>Image Resizer</h3>
+          <p>Custom dimensions resize</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="image">
+        <div class="tool-icon-wrap green"><span>🔄</span></div>
+        <div class="tool-info">
+          <h3>JPG ↔ PNG Converter</h3>
+          <p>Convert between image formats</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="image">
+        <div class="tool-icon-wrap orange"><span>🗑️</span></div>
+        <div class="tool-info">
+          <h3>Background Remover</h3>
+          <p>Auto remove image background</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="image">
+        <div class="tool-icon-wrap pink"><span>📑</span></div>
+        <div class="tool-info">
+          <h3>Image to PDF</h3>
+          <p>Convert images to PDF file</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <!-- PDF TOOLS -->
+      <a href="#" class="tool-card" data-cat="pdf">
+        <div class="tool-icon-wrap orange"><span>📄</span></div>
+        <div class="tool-info">
+          <h3>PDF to Word</h3>
+          <p>Convert PDF to editable Word doc</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="pdf">
+        <div class="tool-icon-wrap blue"><span>🗜️</span></div>
+        <div class="tool-info">
+          <h3>PDF Compressor</h3>
+          <p>Reduce PDF file size</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="pdf">
+        <div class="tool-icon-wrap green"><span>🔗</span></div>
+        <div class="tool-info">
+          <h3>Merge PDF</h3>
+          <p>Combine multiple PDFs into one</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="pdf">
+        <div class="tool-icon-wrap purple"><span>✂️</span></div>
+        <div class="tool-info">
+          <h3>Split PDF</h3>
+          <p>Extract specific PDF pages</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <!-- CALCULATOR TOOLS -->
+      <a href="tools/bmi-calculator.html" class="tool-card" data-cat="calc">
+        <div class="tool-icon-wrap green"><span>⚖️</span></div>
+        <div class="tool-info">
+          <h3>BMI Calculator</h3>
+          <p>With diet tips & health advice</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="calc">
+        <div class="tool-icon-wrap blue"><span>🎂</span></div>
+        <div class="tool-info">
+          <h3>Age Calculator</h3>
+          <p>With birthday countdown</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="calc">
+        <div class="tool-icon-wrap orange"><span>💱</span></div>
+        <div class="tool-info">
+          <h3>Currency Converter</h3>
+          <p>Live exchange rates</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="tools/password-generator.html" class="tool-card" data-cat="calc">
+        <div class="tool-icon-wrap pink"><span>🔐</span></div>
+        <div class="tool-info">
+          <h3>Password Generator</h3>
+          <p>Strong passwords with meter</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="calc">
+        <div class="tool-icon-wrap purple"><span>%</span></div>
+        <div class="tool-info">
+          <h3>Percentage Calculator</h3>
+          <p>Fast percentage calculations</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <!-- SEO TOOLS -->
+      <a href="#" class="tool-card" data-cat="seo">
+        <div class="tool-icon-wrap blue"><span>🏷️</span></div>
+        <div class="tool-info">
+          <h3>Meta Tag Generator</h3>
+          <p>SEO-ready meta tags</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="tools/qr-generator.html" class="tool-card" data-cat="seo">
+        <div class="tool-icon-wrap green"><span>📲</span></div>
+        <div class="tool-info">
+          <h3>QR Code Generator</h3>
+          <p>Custom QR codes with design</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+      <a href="#" class="tool-card" data-cat="seo">
+        <div class="tool-icon-wrap orange"><span>📊</span></div>
+        <div class="tool-info">
+          <h3>SEO Word Counter</h3>
+          <p>Keyword density & SEO tips</p>
+        </div>
+        <div class="tool-tag">Free</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== PREMIUM BANNER ========== -->
+<section class="premium-banner">
+  <div class="container">
+    <div class="premium-card">
+      <div class="premium-glow"></div>
+      <div class="premium-content">
+        <div class="premium-badge">⭐ Pro Features</div>
+        <h2>Unlock the Full Power of Nexora</h2>
+        <p>AI Writing, Bulk Tools, Typing Leaderboards, Certificates & more</p>
+        <div class="premium-features">
+          <span>✦ AI Writing (GPT)</span>
+          <span>✦ AI Image Gen</span>
+          <span>✦ Bulk Compressor</span>
+          <span>✦ SEO Keyword Tool</span>
+          <span>✦ Typing Certificates</span>
+          <span>✦ Multiplayer Race</span>
+        </div>
+        <a href="#pricing" class="btn btn-accent btn-lg">Upgrade to Pro – $9.99/mo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AD BANNER MID ========== -->
+<div class="container ad-slot">
+  <div class="ad-placeholder">
+    <!-- Google AdSense Rectangle 336x280 -->
+    <span>Advertisement</span>
+  </div>
+</div>
+
+<!-- ========== TYPING PREVIEW ========== -->
+<section class="typing-preview">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">⌨️ Typing Platform</p>
+      <h2 class="section-title">Test & Improve Your <span class="gradient-text">Typing Speed</span></h2>
+      <p class="section-sub">Real-time WPM, accuracy tracking, multiple difficulties</p>
+    </div>
+    <div class="typing-demo">
+      <div class="typing-stats-row">
+        <div class="t-stat"><div class="t-stat-val" id="demoWpm">0</div><div class="t-stat-label">WPM</div></div>
+        <div class="t-stat"><div class="t-stat-val" id="demoAcc">100%</div><div class="t-stat-label">Accuracy</div></div>
+        <div class="t-stat"><div class="t-stat-val" id="demoTime">60</div><div class="t-stat-label">Seconds</div></div>
+        <div class="t-stat"><div class="t-stat-val" id="demoErrors">0</div><div class="t-stat-label">Errors</div></div>
+      </div>
+      <div class="typing-text-display" id="typingDisplay">
+        <span class="typed-char correct">T</span><span class="typed-char correct">h</span><span class="typed-char correct">e</span><span class="typed-char"> </span><span class="typed-char active">q</span><span class="typed-char">u</span><span class="typed-char">i</span><span class="typed-char">c</span><span class="typed-char">k</span><span class="typed-char"> </span><span class="typed-char">b</span><span class="typed-char">r</span><span class="typed-char">o</span><span class="typed-char">w</span><span class="typed-char">n</span><span class="typed-char"> </span><span class="typed-char">f</span><span class="typed-char">o</span><span class="typed-char">x</span>
+      </div>
+      <a href="typing.html" class="btn btn-primary btn-lg" style="margin-top:1.5rem">Start Typing Test →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LIVE STATS ========== -->
+<section class="live-stats">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stats-item">
+        <div class="stats-num" id="statTools">24,891</div>
+        <div class="stats-label">Tools Used Today</div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stats-item">
+        <div class="stats-num">22</div>
+        <div class="stats-label">Free Tools</div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stats-item">
+        <div class="stats-num" id="statUsers">1,247</div>
+        <div class="stats-label">Active Users Now</div>
+      </div>
+      <div class="stats-divider"></div>
+      <div class="stats-item">
+        <div class="stats-num">4.9★</div>
+        <div class="stats-label">User Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">💎 Pricing Plans</p>
+      <h2 class="section-title">Simple, <span class="gradient-text">Transparent Pricing</span></h2>
+      <p class="section-sub">Start free. Upgrade when you're ready.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Free -->
+      <div class="pricing-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0<span>/mo</span></div>
+        <ul class="plan-features">
+          <li>✓ 10 tool uses/day</li>
+          <li>✓ 5 typing tests/day</li>
+          <li>✓ Basic stats</li>
+          <li>✗ Ads shown</li>
+          <li>✗ No premium tools</li>
+        </ul>
+        <a href="#" class="btn btn-ghost btn-full">Get Started Free</a>
+      </div>
+
+      <!-- Basic -->
+      <div class="pricing-card">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price">$4.99<span>/mo</span></div>
+        <ul class="plan-features">
+          <li>✓ 100 tool uses/day</li>
+          <li>✓ Unlimited typing</li>
+          <li>✓ No ads</li>
+          <li>✓ Basic premium tools</li>
+          <li>✗ No advanced AI</li>
+        </ul>
+        <a href="#" class="btn btn-ghost btn-full">Choose Basic</a>
+      </div>
+
+      <!-- Pro (Popular) -->
+      <div class="pricing-card featured">
+        <div class="plan-popular">Most Popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$9.99<span>/mo</span></div>
+        <ul class="plan-features">
+          <li>✓ Unlimited everything</li>
+          <li>✓ All premium tools</li>
+          <li>✓ All typing features</li>
+          <li>✓ Typing certificates</li>
+          <li>✓ Priority support</li>
+        </ul>
+        <a href="#" class="btn btn-primary btn-full">Upgrade to Pro</a>
+      </div>
+
+      <!-- Team -->
+      <div class="pricing-card">
+        <div class="plan-name">Team</div>
+        <div class="plan-price">$19.99<span>/mo</span></div>
+        <ul class="plan-features">
+          <li>✓ 5 user accounts</li>
+          <li>✓ All Pro features</li>
+          <li>✓ Team leaderboard</li>
+          <li>✓ Admin dashboard</li>
+          <li>✓ Priority support</li>
+        </ul>
+        <a href="#" class="btn btn-ghost btn-full">Choose Team</a>
+      </div>
+
+    </div>
+    <p class="pricing-note">🇵🇰 Pakistani users can pay via JazzCash or Easypaisa. <a href="#">Learn more</a></p>
+  </div>
+</section>
+
+<!-- ========== AD BANNER BOTTOM ========== -->
+<div class="container ad-slot">
+  <div class="ad-placeholder">
+    <span>Advertisement</span>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer" id="contact">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">N</span>
+        <span class="logo-text">Nexora</span>
+      </a>
+      <p>Your All-in-One Smart Toolkit. Free tools for everyone, everywhere.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Tools</h4>
+      <a href="tools/word-counter.html">Word Counter</a>
+      <a href="tools/image-compressor.html">Image Compressor</a>
+      <a href="tools/bmi-calculator.html">BMI Calculator</a>
+      <a href="tools/qr-generator.html">QR Generator</a>
+      <a href="tools/password-generator.html">Password Generator</a>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="typing.html">Typing Test</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#">Dashboard</a>
+      <a href="#">Leaderboard</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Blog</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Nexora. All rights reserved. | Made with ❤️ for the world</p>
+  </div>
+</footer>
+
+<!-- ========== AUTH MODAL ========== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('login')">Login</button>
+      <button class="modal-tab" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+    <div id="loginForm">
+      <h3>Welcome Back</h3>
+      <button class="btn btn-google">🔑 Continue with Google</button>
+      <div class="divider"><span>or</span></div>
+      <input type="email" placeholder="Email address" class="form-input" />
+      <input type="password" placeholder="Password" class="form-input" />
+      <button class="btn btn-primary btn-full">Login</button>
+    </div>
+    <div id="signupForm" style="display:none">
+      <h3>Create Account</h3>
+      <button class="btn btn-google">🔑 Continue with Google</button>
+      <div class="divider"><span>or</span></div>
+      <input type="text" placeholder="Full name" class="form-input" />
+      <input type="email" placeholder="Email address" class="form-input" />
+      <input type="password" placeholder="Password" class="form-input" />
+      <button class="btn btn-primary btn-full">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

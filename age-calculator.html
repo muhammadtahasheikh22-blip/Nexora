@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Age Calculator – Find Your Exact Age & Birthday Countdown | Nexora</title>
+  <meta name="description" content="Free online age calculator. Find your exact age in years, months, days, hours and minutes. Includes next birthday countdown. No signup needed." />
+  <meta name="keywords" content="age calculator, how old am I, birthday calculator, age in days, next birthday countdown" />
+  <meta property="og:title" content="Age Calculator – Nexora" />
+  <meta property="og:description" content="Find your exact age in years, months, days, hours and minutes. Free online tool." />
+  <link rel="canonical" href="https://nexora.com/tools/age-calculator" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../tools.css" />
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">N</span>
+      <span class="logo-text">Nexora</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../index.html#tools" class="nav-link active">Tools</a>
+      <a href="../typing.html" class="nav-link">Typing</a>
+      <a href="../index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="theme-icon">☀️</span></button>
+      <a href="../index.html#pricing" class="btn btn-primary">Get Pro</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="tool-page-hero">
+  <div class="container">
+    <div class="tool-breadcrumb">
+      <a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Age Calculator
+    </div>
+    <h1 class="tool-hero-title">🎂 Age Calculator</h1>
+    <p class="tool-hero-sub">Find your exact age in years, months, days — and countdown to your next birthday!</p>
+  </div>
+</section>
+
+<div class="container tool-layout">
+  <div class="tool-main">
+    <div class="tool-card">
+      <h2 style="margin-bottom:1.25rem;">Enter Your Date of Birth</h2>
+      <div class="age-form">
+        <div class="age-input-group">
+          <label>Date of Birth</label>
+          <input type="date" id="dob" class="tool-input" max="" />
+        </div>
+        <div class="age-input-group">
+          <label>Calculate Age On</label>
+          <input type="date" id="calcDate" class="tool-input" />
+        </div>
+        <button class="btn btn-primary btn-lg" onclick="calculateAge()" style="align-self:flex-end;">Calculate Age →</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="resultCard" class="tool-card" style="display:none;">
+      <h2 style="margin-bottom:1.25rem;">🎉 Your Age</h2>
+      <div class="age-main-result">
+        <div class="age-big-num" id="ageYears">0</div>
+        <div class="age-big-label">Years Old</div>
+      </div>
+      <div class="age-stats-grid">
+        <div class="age-stat-box">
+          <div class="age-stat-val" id="ageMonths">0</div>
+          <div class="age-stat-label">Total Months</div>
+        </div>
+        <div class="age-stat-box">
+          <div class="age-stat-val" id="ageDays">0</div>
+          <div class="age-stat-label">Total Days</div>
+        </div>
+        <div class="age-stat-box">
+          <div class="age-stat-val" id="ageHours">0</div>
+          <div class="age-stat-label">Total Hours</div>
+        </div>
+        <div class="age-stat-box">
+          <div class="age-stat-val" id="ageMinutes">0</div>
+          <div class="age-stat-label">Total Minutes</div>
+        </div>
+      </div>
+
+      <div class="age-detail-row">
+        <span class="age-detail-label">Exact Age:</span>
+        <span id="exactAge" style="color:var(--green);font-weight:600;"></span>
+      </div>
+      <div class="age-detail-row">
+        <span class="age-detail-label">Day of Birth:</span>
+        <span id="dobDay" style="color:var(--purple);font-weight:600;"></span>
+      </div>
+      <div class="age-detail-row">
+        <span class="age-detail-label">Zodiac Sign:</span>
+        <span id="zodiac" style="font-weight:600;"></span>
+      </div>
+    </div>
+
+    <!-- Birthday Countdown -->
+    <div id="bdayCard" class="tool-card" style="display:none;">
+      <h2>🎈 Next Birthday Countdown</h2>
+      <div class="bday-countdown">
+        <div class="bday-unit"><div class="bday-num" id="bdDays">0</div><div class="bday-label">Days</div></div>
+        <div class="bday-sep">:</div>
+        <div class="bday-unit"><div class="bday-num" id="bdHours">0</div><div class="bday-label">Hours</div></div>
+        <div class="bday-sep">:</div>
+        <div class="bday-unit"><div class="bday-num" id="bdMins">0</div><div class="bday-label">Minutes</div></div>
+        <div class="bday-sep">:</div>
+        <div class="bday-unit"><div class="bday-num" id="bdSecs">0</div><div class="bday-label">Seconds</div></div>
+      </div>
+      <div id="bdayDate" style="text-align:center;margin-top:0.75rem;color:var(--text2);font-size:0.9rem;"></div>
+    </div>
+
+    <!-- Fun Facts -->
+    <div id="funFactsCard" class="tool-card" style="display:none;">
+      <h2>✨ Fun Facts About Your Age</h2>
+      <div id="funFacts" class="fun-facts-list"></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="tool-card faq-card">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">How does the age calculator work?</button>
+          <div class="faq-a">Our age calculator computes the exact difference between your date of birth and today (or any date you choose). It accounts for leap years and gives you your age in years, months, days, hours, and minutes.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Can I calculate age for a past or future date?</button>
+          <div class="faq-a">Yes! Use the "Calculate Age On" field to select any date — past or future — and the tool will calculate the age as of that date.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">What is the next birthday countdown?</button>
+          <div class="faq-a">After calculating your age, a live countdown timer shows how many days, hours, minutes, and seconds remain until your next birthday.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="tool-sidebar">
+    <div class="tool-card">
+      <h3>🔧 More Tools</h3>
+      <div class="sidebar-tool-links">
+        <a href="bmi-calculator.html" class="sidebar-tool-link">⚖️ BMI Calculator</a>
+        <a href="percentage-calculator.html" class="sidebar-tool-link">% Percentage Calc</a>
+        <a href="word-counter.html" class="sidebar-tool-link">📝 Word Counter</a>
+        <a href="password-generator.html" class="sidebar-tool-link">🔐 Password Generator</a>
+        <a href="qr-generator.html" class="sidebar-tool-link">📱 QR Generator</a>
+      </div>
+    </div>
+    <div class="ad-slot ad-slot-sidebar" style="display:none;"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo"><span class="logo-icon">N</span><span class="logo-text">Nexora</span></a>
+      <p>Your All-in-One Smart Toolkit</p>
+    </div>
+    <div class="footer-links">
+      <a href="../about.html">About</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nexora. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<style>
+.age-form { display:grid; grid-template-columns:1fr 1fr auto; gap:1rem; align-items:end; }
+@media(max-width:640px){ .age-form { grid-template-columns:1fr; } }
+.age-input-group { display:flex; flex-direction:column; gap:0.4rem; }
+.age-input-group label { font-size:0.85rem; color:var(--text2); font-weight:600; }
+.tool-input {
+  padding:0.75rem 1rem;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:1rem;
+  outline:none;
+  transition:border-color var(--transition);
+}
+.tool-input:focus { border-color:var(--purple); }
+.age-main-result { text-align:center; padding:1.5rem; background:var(--bg3); border-radius:var(--radius); margin-bottom:1.25rem; }
+.age-big-num { font-size:4rem; font-weight:800; font-family:var(--font-display); background:linear-gradient(135deg,var(--purple),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1; }
+.age-big-label { color:var(--text2); font-size:1rem; margin-top:0.25rem; }
+.age-stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; margin-bottom:1.25rem; }
+@media(max-width:640px){ .age-stats-grid { grid-template-columns:repeat(2,1fr); } }
+.age-stat-box { background:var(--bg3); border-radius:var(--radius-sm); padding:0.75rem; text-align:center; }
+.age-stat-val { font-size:1.5rem; font-weight:700; color:var(--purple); font-family:var(--font-display); }
+.age-stat-label { font-size:0.72rem; color:var(--text3); margin-top:0.2rem; }
+.age-detail-row { display:flex; justify-content:space-between; padding:0.6rem 0; border-bottom:1px solid var(--border); font-size:0.9rem; }
+.age-detail-label { color:var(--text2); }
+.bday-countdown { display:flex; align-items:center; justify-content:center; gap:0.5rem; padding:1.5rem; background:var(--bg3); border-radius:var(--radius); margin-top:1rem; }
+.bday-unit { text-align:center; }
+.bday-num { font-size:2.5rem; font-weight:800; font-family:var(--font-display); color:var(--green); min-width:60px; }
+.bday-label { font-size:0.7rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; }
+.bday-sep { font-size:2rem; color:var(--text3); font-weight:700; margin-bottom:1.2rem; }
+.fun-facts-list { display:flex; flex-direction:column; gap:0.6rem; margin-top:0.75rem; }
+.fun-fact { padding:0.75rem 1rem; background:var(--bg3); border-left:3px solid var(--purple); border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:0.9rem; }
+.sidebar-tool-links { display:flex; flex-direction:column; gap:0.4rem; margin-top:0.75rem; }
+.sidebar-tool-link { padding:0.5rem 0.75rem; background:var(--bg3); border-radius:var(--radius-sm); font-size:0.85rem; transition:all var(--transition); color:var(--text2); }
+.sidebar-tool-link:hover { background:rgba(108,99,255,0.1); color:var(--purple); }
+</style>
+
+<script>
+const savedTheme = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+document.getElementById('themeToggle').querySelector('.theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  const n = c === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', n);
+  localStorage.setItem('theme', n);
+  document.getElementById('themeToggle').querySelector('.theme-icon').textContent = n === 'dark' ? '☀️' : '🌙';
+});
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+
+// Set max date to today
+const today = new Date();
+const todayStr = today.toISOString().split('T')[0];
+document.getElementById('dob').setAttribute('max', todayStr);
+document.getElementById('calcDate').value = todayStr;
+document.getElementById('calcDate').setAttribute('max', todayStr);
+
+let countdownInterval = null;
+
+function calculateAge() {
+  const dobVal = document.getElementById('dob').value;
+  const calcVal = document.getElementById('calcDate').value;
+  if (!dobVal) { showToast('Please enter your date of birth!'); return; }
+  const dob = new Date(dobVal);
+  const calc = new Date(calcVal || todayStr);
+  if (dob > calc) { showToast('Date of birth cannot be after the calculation date!'); return; }
+
+  // Exact age
+  let years = calc.getFullYear() - dob.getFullYear();
+  let months = calc.getMonth() - dob.getMonth();
+  let days = calc.getDate() - dob.getDate();
+  if (days < 0) { months--; const prevMonth = new Date(calc.getFullYear(), calc.getMonth(), 0); days += prevMonth.getDate(); }
+  if (months < 0) { years--; months += 12; }
+
+  const totalDays = Math.floor((calc - dob) / (1000*60*60*24));
+  const totalMonths = years * 12 + months;
+  const totalHours = totalDays * 24;
+  const totalMinutes = totalHours * 60;
+
+  document.getElementById('ageYears').textContent = years;
+  document.getElementById('ageMonths').textContent = totalMonths.toLocaleString();
+  document.getElementById('ageDays').textContent = totalDays.toLocaleString();
+  document.getElementById('ageHours').textContent = totalHours.toLocaleString();
+  document.getElementById('ageMinutes').textContent = totalMinutes.toLocaleString();
+  document.getElementById('exactAge').textContent = `${years} years, ${months} months, ${days} days`;
+
+  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  document.getElementById('dobDay').textContent = dayNames[dob.getDay()];
+  document.getElementById('zodiac').textContent = getZodiac(dob.getMonth() + 1, dob.getDate());
+
+  document.getElementById('resultCard').style.display = 'block';
+
+  // Birthday countdown (only if calcDate is today)
+  if (calcVal === todayStr || !calcVal) {
+    startBirthdayCountdown(dob);
+    document.getElementById('bdayCard').style.display = 'block';
+  }
+
+  // Fun facts
+  showFunFacts(totalDays, years);
+  document.getElementById('funFactsCard').style.display = 'block';
+  document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+function startBirthdayCountdown(dob) {
+  if (countdownInterval) clearInterval(countdownInterval);
+  function tick() {
+    const now = new Date();
+    let nextBday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+    if (nextBday <= now) nextBday.setFullYear(now.getFullYear() + 1);
+    const diff = nextBday - now;
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('bdDays').textContent = String(d).padStart(2,'0');
+    document.getElementById('bdHours').textContent = String(h).padStart(2,'0');
+    document.getElementById('bdMins').textContent = String(m).padStart(2,'0');
+    document.getElementById('bdSecs').textContent = String(s).padStart(2,'0');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('bdayDate').textContent = `Next birthday: ${months[nextBday.getMonth()]} ${nextBday.getDate()}, ${nextBday.getFullYear()}`;
+  }
+  tick(); countdownInterval = setInterval(tick, 1000);
+}
+
+function getZodiac(month, day) {
+  const signs = [[1,20,'♑ Capricorn'],[2,19,'♒ Aquarius'],[3,20,'♓ Pisces'],[4,20,'♈ Aries'],[5,21,'♉ Taurus'],[6,21,'♊ Gemini'],[7,22,'♋ Cancer'],[8,23,'♌ Leo'],[9,23,'♍ Virgo'],[10,23,'♎ Libra'],[11,22,'♏ Scorpio'],[12,22,'♐ Sagittarius'],[1,19,'♑ Capricorn']];
+  for (const [m, d, sign] of signs) { if (month < m || (month === m && day <= d)) return sign; }
+  return '♑ Capricorn';
+}
+
+function showFunFacts(totalDays, years) {
+  const facts = [
+    `You have lived for approximately <strong>${(totalDays * 24).toLocaleString()} hours</strong>`,
+    `Your heart has beaten about <strong>${Math.round(totalDays * 24 * 60 * 70).toLocaleString()} times</strong>`,
+    `You have taken approximately <strong>${(totalDays * 20000).toLocaleString()} breaths</strong>`,
+    `You have slept for roughly <strong>${Math.round(totalDays * 8).toLocaleString()} hours</strong> (⅓ of your life)`,
+    `You have blinked approximately <strong>${(totalDays * 14400).toLocaleString()} times</strong>`,
+  ];
+  document.getElementById('funFacts').innerHTML = facts.map(f => `<div class="fun-fact">🌟 ${f}</div>`).join('');
+}
+
+function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
